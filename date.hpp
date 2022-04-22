@@ -16,12 +16,16 @@ public:
     Date(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
 
     //! Селектор за дни
-    unsigned getDay() const { return day; }
+    unsigned getDay() const
+    { return day; }
 
     //! Селектор за месеци
-    unsigned getMonth() const { return month; }
+    unsigned getMonth() const
+    { return month; }
 
     //! Селектор за година
-    int getYear() const { return year; }
+    int getYear() const
+    { return year; }
 };
+
 #endif //PERSONAL_CALENDAR_DATE_HPP
