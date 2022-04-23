@@ -20,6 +20,11 @@ public:
     //! Селектор за часове
     unsigned getMinutes() const
     { return minutes; }
+
+    //! Мутатор за часове
+    void setHours(unsigned _hours);
+    //! Мутатор за минути
+    void setMinutes(unsigned _minutes);
 };
 
 #endif //PERSONAL_CALENDAR_TIME_HPP
