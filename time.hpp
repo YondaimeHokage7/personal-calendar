@@ -23,6 +23,7 @@ public:
 
     //! Мутатор за часове
     void setHours(unsigned _hours);
+
     //! Мутатор за минути
     void setMinutes(unsigned _minutes);
 };
