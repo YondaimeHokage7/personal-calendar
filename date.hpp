@@ -26,6 +26,13 @@ public:
     //! Селектор за година
     int getYear() const
     { return year; }
+
+    //! Мутатор за ден
+    void setDay(const unsigned _day);
+    //! Мутатор за месеци
+    void setMonth(const unsigned _month);
+    //! Мутатор за години
+    void setYear(const int _year);
 };
 
 #endif //PERSONAL_CALENDAR_DATE_HPP
