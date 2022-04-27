@@ -17,6 +17,13 @@ private:
     //! Време на срещата
     Time time;
 public:
+
+    //! Конструктор по подразбиране
+    Appointment();
+
+    //! Конструктор с параметри
+    Appointment(const char* _name, const char* _comment, Date _date, Time _time);
+
     //! Селекторр за часове
     unsigned getTimeH() const
     { return time.getHours(); }
@@ -36,6 +43,18 @@ public:
     //! Селектор за година
     int getYear() const
     { return date.getYear(); }
+
+    //! Мутатор за име
+    void setName(const char* _name);
+
+    //! Мутатор за коментар
+    void setComment(const char* _commenet);
+
+    //! Мутатор за време
+    void setTime(unsigned _hours = 0, unsigned _minutes = 0);
+
+    //! Мутатор за дата
+    void setDate(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
 };
 
 #endif //PERSONAL_CALENDAR_APPOINTMENT_HPP
