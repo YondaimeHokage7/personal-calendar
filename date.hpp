@@ -1,5 +1,6 @@
 #ifndef PERSONAL_CALENDAR_DATE_HPP
 #define PERSONAL_CALENDAR_DATE_HPP
+#include <iostream>
 
 //! Клас за дата, който има член-данни от тип unsigned за ден и месец и от тип int за година
 class Date
@@ -33,6 +34,10 @@ public:
     void setMonth(const unsigned _month);
     //! Мутатор за години
     void setYear(const int _year);
+
+    friend std::istream& operator>>(std::istream&, Date&);
 };
+
+std::ostream& operator<<(std::ostream&, const Date&);
 
 #endif //PERSONAL_CALENDAR_DATE_HPP
