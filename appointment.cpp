@@ -13,11 +13,11 @@ Appointment::Appointment(const char* _name, const char* _comment, Date _date, Ti
     setComment(_comment);
 }
 
-void Appointment::setComment(const char* _commenet)
+void Appointment::setComment(const char* _comment)
 {
     delete[] comment;
-    comment = new char[strlen(_commenet)];
-    strcpy(_commenet, comment);
+    comment = new char[strlen(_comment)];
+    strcpy(_comment, comment);
 }
 
 void Appointment::setName(const char* _name)
