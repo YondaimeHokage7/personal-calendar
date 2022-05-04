@@ -1,6 +1,9 @@
 #ifndef PERSONAL_CALENDAR_TIME_HPP
 #define PERSONAL_CALENDAR_TIME_HPP
 
+#include <iostream>
+
+
 //! Клас за време, който има член-данни от тип unsigned за часове и минути
 class Time
 {
@@ -26,6 +29,10 @@ public:
 
     //! Мутатор за минути
     void setMinutes(unsigned _minutes);
+
+    friend std::istream& operator>>(std::istream&, Time&);
 };
+
+std::ostream& operator<<(std::ostream&, const Time&);
 
 #endif //PERSONAL_CALENDAR_TIME_HPP
