@@ -18,7 +18,10 @@ private:
     Time endTime;
 public:
 
-    //! Конструктор с параметри по подразбиране
+    //! Конструктор по подразбиране
+    TimeInterval();
+
+    //! Конструктор с параметри
     TimeInterval(Date _startDate, Time _startTime, Date _endDate, Time _endTime);
 
     //! Селектор за час на начало време
@@ -46,7 +49,7 @@ public:
     { return startDate.getMonth(); }
 
     //! Селектор за година за начална дата
-    unsigned getStartYear() const
+    int getStartYear() const
     { return startDate.getYear(); }
 
     //! Селектор за ден на край
@@ -58,7 +61,7 @@ public:
     { return endDate.getMonth(); }
 
     //! Селектор за година на край
-    unsigned getEndYear() const
+    int getEndYear() const
     { return endDate.getYear(); }
 };
 
