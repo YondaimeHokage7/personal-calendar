@@ -1,6 +1,6 @@
 #include "timeInterval.hpp"
 #include "time.hpp"
 
-TimeInterval::TimeInterval(Time _start, Time _end): start(_start), end(_end)
+TimeInterval::TimeInterval(Date _startDate, Time _startTime, Date _endDate, Time _endTime): startDate(_startDate), startTime(_startTime), endDate(_endDate), endTime(_endTime)
 {}
 
