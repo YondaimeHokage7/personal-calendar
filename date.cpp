@@ -18,10 +18,9 @@ void Date::setYear(const int _year)
     year = _year;
 }
 
-
 std::istream& operator>>(std::istream& is, Date& date)
 {
-    char c; //държи '.'
+    char c; //държи '-'
     return is >> date.day >> c >> date.month >> c >> date.year;
 }
 
@@ -29,15 +28,15 @@ std::ostream& operator<<(std::ostream& os, const Date& date)
 {
     if (date.getDay() < 10 && date.getMonth() < 10)
     {
-        return os << 0 << date.getDay() << '.' << 0 << date.getMonth() << '.' << date.getYear();
+        return os << 0 << date.getDay() << '-' << 0 << date.getMonth() << '-' << date.getYear();
     }
     else if (date.getDay() >= 10 && date.getMonth() < 10)
     {
-        return os << date.getDay() << '.' << 0 << date.getMonth() << '.' << date.getYear();
+        return os << date.getDay() << '-' << 0 << date.getMonth() << '-' << date.getYear();
     }
     else if (date.getDay() < 10 && date.getMonth() >= 10)
     {
-        return os << 0 << date.getDay() << '.' << date.getMonth() << '.' << date.getYear();
+        return os << 0 << date.getDay() << '-' << date.getMonth() << '-' << date.getYear();
     }
-    return os << date.getDay() << '.' << date.getMonth() << '.' << date.getYear();
+    return os << date.getDay() << '-' << date.getMonth() << '-' << date.getYear();
 }
