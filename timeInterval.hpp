@@ -3,6 +3,7 @@
 
 #include "time.hpp"
 #include "date.hpp"
+#include <iostream>
 
 //! Клас за интервал от време
 class TimeInterval
@@ -63,6 +64,10 @@ public:
     //! Селектор за година на край
     int getEndYear() const
     { return endDate.getYear(); }
+
+    friend std::istream& operator>>(std::istream&, TimeInterval&);
 };
+
+std::ostream& operator<<(std::ostream&, const TimeInterval&);
 
 #endif //PERSONAL_CALENDAR_TIMEINTERVAL_HPP
