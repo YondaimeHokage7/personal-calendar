@@ -7,7 +7,7 @@ Appointment::Appointment()
     setComment("No comment");
 }
 
-Appointment::Appointment(const char* _name, const char* _comment, Date _date, Time _time) : date(_date), time(_time)
+Appointment::Appointment(const char* _name, const char* _comment, TimeInterval _interval) : interval(_interval)
 {
     setName(_name);
     setComment(_comment);
@@ -27,10 +27,26 @@ void Appointment::setName(const char* _name)
     strcpy(_name, name);
 }
 
-void Appointment::setTime(unsigned int _hours, unsigned int _minutes)
+std::istream& operator>>(std::istream& is, Appointment& appointment)
 {
-    time.setHours(_hours);
-    time.setMinutes(_minutes);
+    return (is.getline(appointment.name,SIZE_MAX,'\n') >> appointment.interval).ignore().getline(appointment.comment,SIZE_MAX,'\n');
+}
+
+std::ostream& operator<<(std::ostream& os, Appointment& appointment)
+{
+    return os << appointment.name << appointment.interval << appointment.comment;
+}
+
+/*void Appointment::setStartTime(unsigned int _hours, unsigned int _minutes)
+{
+    startTime.setHours(_hours);
+    startTime.setMinutes(_minutes);
+}
+
+void Appointment::setEndTime(unsigned int _hours, unsigned int _minutes)
+{
+    endTime.setHours(_hours);
+    endTime.setMinutes(_minutes);
 }
 
 void Appointment::setDate(unsigned int _day, unsigned int _month, int _year)
@@ -38,4 +54,4 @@ void Appointment::setDate(unsigned int _day, unsigned int _month, int _year)
     date.setDay(_day);
     date.setMonth(_month);
     date.setYear(_year);
-}
+}*/ //неизползвани мутатори

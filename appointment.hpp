@@ -3,6 +3,7 @@
 
 #include "date.hpp"
 #include "time.hpp"
+#include "timeInterval.hpp"
 
 //! Клас за ангажимент, който има за член-данни два символни низа за име и коментар, Date за дата и Time за час
 class Appointment
@@ -12,37 +13,49 @@ private:
     char* name;
     //! Коментар към срещата
     char* comment;
-    //! Дата на срерщата
+    //! Интервал от време
+    TimeInterval interval;
+    /*//! Дата на срерщата
     Date date;
-    //! Време на срещата
-    Time time;
+    //! Начало на срещата
+    Time startTime;
+    //! Край на срещата
+    Time endTime;*/ // неизползвани член-данни
+
 public:
 
     //! Конструктор по подразбиране
     Appointment();
 
     //! Конструктор с параметри
-    Appointment(const char* _name, const char* _comment, Date _date, Time _time);
+    Appointment(const char* _name, const char* _comment, TimeInterval _interval);
 
-    //! Селекторр за часове
-    unsigned getTimeH() const
-    { return time.getHours(); }
+    //! Селекторр за час на начало
+    unsigned getStartTimeH() const
+    { return interval.getStartH(); }
 
-    //! Селектор за минути
-    unsigned getTimeM() const
-    { return time.getMinutes(); }
+    //! Селектор за минути на начало
+    unsigned getStartTimeM() const
+    { return interval.getStartM(); }
+
+    //! Селектор за час на край
+    unsigned getEndTimeH() const
+    { return interval.getEndH(); }
+
+    unsigned getEndTimeM() const
+    { return interval.getEndM(); }
 
     //! Селектор за ден
-    unsigned getDay() const
-    { return date.getDay(); }
+    unsigned getStartDay() const
+    { return interval.getStartDay(); }
 
     //! Селектор за месец
-    unsigned getMonth() const
-    { return date.getMonth(); }
+    unsigned getStartMonth() const
+    { return interval.getStartMonth(); }
 
     //! Селектор за година
-    int getYear() const
-    { return date.getYear(); }
+    int getStartYear() const
+    { return interval.getStartYear(); }
 
     //! Мутатор за име
     void setName(const char* _name);
@@ -50,11 +63,21 @@ public:
     //! Мутатор за коментар
     void setComment(const char* _commenet);
 
-    //! Мутатор за време
-    void setTime(unsigned _hours = 0, unsigned _minutes = 0);
-
-    //! Мутатор за дата
-    void setDate(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
+    //! Предефиниране на >>
+    friend std::istream& operator>>(std::istream&, Appointment&);
+    //! Предефиниране на <<
+    friend std::ostream& operator<<(std::ostream&, Appointment&);
 };
+
+/*
+//! Мутатор за време на начало на срещата
+void setStartTime(unsigned _hours = 0, unsigned _minutes = 0);
+
+//! Мутатор за време на край ан срещата
+void setEndTime(unsigned _hours = 0, unsigned _minutes = 0);
+
+//! Мутатор за дата
+void setDate(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
+*/ //неизползвани мутатори
 
 #endif //PERSONAL_CALENDAR_APPOINTMENT_HPP
