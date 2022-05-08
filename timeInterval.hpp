@@ -65,6 +65,36 @@ public:
     int getEndYear() const
     { return endDate.getYear(); }
 
+    //! Мутатор за начален ден
+    void setStartDay(unsigned _day);
+
+    //! Мутатор за нчален месец
+    void setStartMonth(unsigned  _month);
+
+    //! Мутатор за начална година
+    void setStartYear(int _year);
+
+    //! Мутатор за начален час
+    void setStartHours(unsigned _hours);
+
+    //!Мутатор за начални минути
+    void setStartMinutes(unsigned _minutes);
+
+    //! Мутатор за краен ден
+    void setEndDay(unsigned _day);
+
+    //!Мутатор за краен месец
+    void setEndMonth(unsigned _month);
+
+    //! Мутатор за крайна година
+    void setEndYear(int _year);
+
+    //! Мутатор за краен час
+    void setEndHours(unsigned  _hours);
+
+    //!Мутатор за крайни минути
+    void setEndMinutes(unsigned _minutes);
+
     friend std::istream& operator>>(std::istream&, TimeInterval&);
 
     friend std::ostream& operator<<(std::ostream&, const TimeInterval&);
