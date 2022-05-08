@@ -40,12 +40,12 @@ void Appointment::setName(const char* _name)
 
 std::istream& operator>>(std::istream& is, Appointment& appointment)
 {
-    return (is.getline(appointment.name, SIZE_MAX, '\n') >> appointment.interval).ignore().getline(appointment.comment, SIZE_MAX, '\n');
+    return (is.getline(appointment.name, strlen(appointment.name), '\n') >> appointment.interval).ignore().getline(appointment.comment, strlen(appointment.comment), '\n');
 }
 
-std::ostream& operator<<(std::ostream& os, Appointment& appointment)
+std::ostream& operator<<(std::ostream& os, const Appointment& appointment)
 {
-    return os << appointment.getName() << ' ' << appointment.interval << ' ' << appointment.getComment();
+    return os << appointment.getName() << "\n" << appointment.interval << "\n" << appointment.getComment() << "\n";
 }
 
 /*void Appointment::setStartTime(unsigned int _hours, unsigned int _minutes)

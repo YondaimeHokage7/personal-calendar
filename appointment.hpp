@@ -79,7 +79,7 @@ public:
     friend std::istream& operator>>(std::istream&, Appointment&);
 
     //! Предефиниране на <<
-    friend std::ostream& operator<<(std::ostream&, Appointment&);
+    friend std::ostream& operator<<(std::ostream&, const Appointment&);
 };
 
 /*
