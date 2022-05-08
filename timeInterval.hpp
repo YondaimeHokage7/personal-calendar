@@ -66,8 +66,9 @@ public:
     { return endDate.getYear(); }
 
     friend std::istream& operator>>(std::istream&, TimeInterval&);
+
+    friend std::ostream& operator<<(std::ostream&, const TimeInterval&);
 };
 
-std::ostream& operator<<(std::ostream&, const TimeInterval&);
 
 #endif //PERSONAL_CALENDAR_TIMEINTERVAL_HPP

@@ -14,7 +14,8 @@ std::istream& operator>>(std::istream& is, TimeInterval& timeInterval)
 
 std::ostream& operator<<(std::ostream& os, const TimeInterval& timeInterval)
 {
-    return os << timeInterval.getStartYear() << '-' << timeInterval.getStartMonth() << '-' << timeInterval.getStartDay() << ' ' << timeInterval.getStartH() << ':' << timeInterval.getStartM()
-              << timeInterval.getEndYear() << '-' << timeInterval.getEndMonth() << '-' << timeInterval.getEndDay() << ' ' << timeInterval.getEndH() << ':' << timeInterval.getEndM();
+    return os << timeInterval.startDate << ' ' <<timeInterval.startTime << ' ' << timeInterval.endDate << ' ' <<timeInterval.endTime;
+    /*return os << timeInterval.getStartYear() << '-' << timeInterval.getStartMonth() << '-' << timeInterval.getStartDay() << ' ' << timeInterval.getStartH() << ':' << timeInterval.getStartM()
+              << timeInterval.getEndYear() << '-' << timeInterval.getEndMonth() << '-' << timeInterval.getEndDay() << ' ' << timeInterval.getEndH() << ':' << timeInterval.getEndM();*/
 }
 
