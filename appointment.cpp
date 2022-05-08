@@ -38,6 +38,32 @@ void Appointment::setName(const char* _name)
     name[strlen(_name) - 1] = '\0';
 }
 
+void Appointment::setStartDate(unsigned int _day, unsigned int _month, int _year)
+{
+    interval.setStartDay(_day);
+    interval.setStartMonth(_month);
+    interval.setStartYear(_year);
+}
+
+void Appointment::setStartTime(unsigned int _hours, unsigned int _minutes)
+{
+    interval.setStartHours(_hours);
+    interval.setStartMinutes(_minutes);
+}
+
+void Appointment::setEndDate(unsigned int _day, unsigned int _month, int _year)
+{
+    interval.setEndDay(_day);
+    interval.setEndMonth(_month);
+    interval.setEndYear(_year);
+}
+
+void Appointment::setEndTime(unsigned int _hours, unsigned int _minutes)
+{
+    interval.setEndHours(_hours);
+    interval.setEndMinutes(_minutes);
+}
+
 std::istream& operator>>(std::istream& is, Appointment& appointment)
 {
     return (is.getline(appointment.name, strlen(appointment.name), '\n') >> appointment.interval).ignore().getline(appointment.comment, strlen(appointment.comment), '\n');

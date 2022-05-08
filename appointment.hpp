@@ -78,6 +78,18 @@ public:
     //! Мутатор за коментар
     void setComment(const char* _comment);
 
+    //! Мутатор за начална дата
+    void setStartDate(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
+
+    //! Мутатор за време на начало на срещата
+    void setStartTime(unsigned _hours = 0, unsigned _minutes = 0);
+
+    //! Мутатор за крайна дата
+    void setEndDate(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
+
+    //! Мутатор за време на край на срещата
+    void setEndTime(unsigned _hours = 0, unsigned _minutes = 0);
+
     //! Предефиниране на >>
     friend std::istream& operator>>(std::istream&, Appointment&);
 
@@ -86,14 +98,6 @@ public:
 };
 
 /*
-//! Мутатор за време на начало на срещата
-void setStartTime(unsigned _hours = 0, unsigned _minutes = 0);
-
-//! Мутатор за време на край ан срещата
-void setEndTime(unsigned _hours = 0, unsigned _minutes = 0);
-
-//! Мутатор за дата
-void setDate(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
 */ //неизползвани мутатори
 
 #endif //PERSONAL_CALENDAR_APPOINTMENT_HPP
