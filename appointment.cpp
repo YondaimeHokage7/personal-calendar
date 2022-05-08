@@ -10,6 +10,18 @@ Appointment::Appointment(const char* _name, const char* _comment, TimeInterval _
     setComment(_comment);
 }
 
+Appointment::Appointment(const Appointment& other) : name(nullptr), comment(nullptr), interval(other.interval)
+{
+    setName(other.name);
+    setComment(other.comment);
+}
+
+Appointment::~Appointment()
+{
+    delete[] name;
+    delete[] comment;
+}
+
 void Appointment::setComment(const char* _comment)
 {
     delete[] comment;

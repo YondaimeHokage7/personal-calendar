@@ -30,6 +30,12 @@ public:
     //! Конструктор с параметри
     Appointment(const char* _name, const char* _comment, TimeInterval _interval);
 
+    //! Конструктор за копиране
+    Appointment(const Appointment&);
+
+    //! Деструктор
+    ~Appointment();
+
     //! Селекторр за час на начало
     unsigned getStartTimeH() const
     { return interval.getStartH(); }
