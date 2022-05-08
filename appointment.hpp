@@ -5,6 +5,9 @@
 #include "time.hpp"
 #include "timeInterval.hpp"
 
+const size_t defaultNameSize{100};
+const size_t defaultCommentSize{1000};
+
 //! Клас за ангажимент, който има за член-данни два символни низа за име и коментар, Date за дата и Time за час
 class Appointment
 {

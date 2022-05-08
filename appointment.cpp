@@ -1,7 +1,7 @@
 #include "appointment.hpp"
 #include "functions.hpp"
 
-Appointment::Appointment() : name(nullptr), comment(nullptr)
+Appointment::Appointment() : name(new char[defaultNameSize]), comment(new char[defaultCommentSize])
 {}
 
 Appointment::Appointment(const char* _name, const char* _comment, TimeInterval _interval) : name(nullptr), comment(nullptr), interval(_interval)
