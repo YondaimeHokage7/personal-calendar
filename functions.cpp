@@ -17,3 +17,20 @@ void strcpy(const char* source, char* destination)
         destination[i] = source[i];
     }
 }
+
+bool strcmp(char* action, char* possibleAction)
+{
+    bool result{true};
+    if (strlen(action) != strlen(possibleAction))
+    {
+        result = false;
+    }
+    for (int i{0}; action[i] != '\0' && possibleAction[i] != '\0' && result; i++)
+    {
+        if (action[i] != possibleAction[i])
+        {
+            result = false;
+        }
+    }
+    return result;
+}
