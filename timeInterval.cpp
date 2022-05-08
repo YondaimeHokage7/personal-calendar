@@ -4,7 +4,7 @@
 TimeInterval::TimeInterval()
 {}
 
-TimeInterval::TimeInterval(Date _startDate, Time _startTime, Date _endDate, Time _endTime)
+TimeInterval::TimeInterval(Date _startDate, Time _startTime, Date _endDate, Time _endTime) : startDate(_startDate), startTime(_startTime), endDate(_endDate), endTime(_endTime)
 {}
 
 std::istream& operator>>(std::istream& is, TimeInterval& timeInterval)
