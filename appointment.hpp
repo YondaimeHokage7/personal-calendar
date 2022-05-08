@@ -57,14 +57,21 @@ public:
     int getStartYear() const
     { return interval.getStartYear(); }
 
+    const char* getName() const
+    { return name; }
+
+    const char* getComment() const
+    { return comment; }
+
     //! Мутатор за име
     void setName(const char* _name);
 
     //! Мутатор за коментар
-    void setComment(const char* _commenet);
+    void setComment(const char* _comment);
 
     //! Предефиниране на >>
     friend std::istream& operator>>(std::istream&, Appointment&);
+
     //! Предефиниране на <<
     friend std::ostream& operator<<(std::ostream&, Appointment&);
 };
