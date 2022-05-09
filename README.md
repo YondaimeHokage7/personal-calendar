@@ -1,2 +1,2 @@
-# personal-calendar
- Project 1 OOP
+# Тема 5: Личен календар
+ Първи проект по ООП
