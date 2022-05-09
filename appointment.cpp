@@ -25,17 +25,17 @@ Appointment::~Appointment()
 void Appointment::setComment(const char* _comment)
 {
     delete[] comment;
-    comment = new char[strlen(_comment)];
+    comment = new char[myStrlen(_comment)];
     strcpy(_comment, comment);
-    comment[strlen(_comment) - 1] = '\0';
+    comment[myStrlen(_comment) - 1] = '\0';
 }
 
 void Appointment::setName(const char* _name)
 {
     delete[] name;
-    name = new char[strlen(_name)];
+    name = new char[myStrlen(_name)];
     strcpy(_name, name);
-    name[strlen(_name) - 1] = '\0';
+    name[myStrlen(_name) - 1] = '\0';
 }
 
 void Appointment::setStartDate(unsigned int _day, unsigned int _month, int _year)
@@ -66,7 +66,7 @@ void Appointment::setEndTime(unsigned int _hours, unsigned int _minutes)
 
 std::istream& operator>>(std::istream& is, Appointment& appointment)
 {
-    return (is.getline(appointment.name, strlen(appointment.name), '\n') >> appointment.interval).ignore().getline(appointment.comment, strlen(appointment.comment), '\n');
+    return (is.getline(appointment.name, myStrlen(appointment.name), '\n') >> appointment.interval).ignore().getline(appointment.comment, myStrlen(appointment.comment), '\n');
 }
 
 std::ostream& operator<<(std::ostream& os, const Appointment& appointment)
