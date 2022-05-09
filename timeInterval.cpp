@@ -1,5 +1,7 @@
+#include <sstream>
 #include "timeInterval.hpp"
 #include "time.hpp"
+#include "functions.hpp"
 
 TimeInterval::TimeInterval()
 {}
