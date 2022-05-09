@@ -60,11 +60,11 @@ void deleteEvent()
         if (strcmp(lineRead, userInput))
         {
             putInStringStream(lineRead, deleted); //слага името на event в deleted
-            f.getline(lineRead, defaultCommentSize);
+            f.getline(lineRead, defaultCommentSize,'\n');
             putInStringStream(lineRead, deleted); //слага интервала на event в deleted
-            f.getline(lineRead, defaultCommentSize);
+            f.getline(lineRead, defaultCommentSize,'\n');
             putInStringStream(lineRead, deleted); //слага коментара на event в deleted
-            f.getline(lineRead, defaultCommentSize);
+            f.getline(lineRead, defaultCommentSize,'\n');
             putInStringStream(lineRead, deleted); // слага новия ред в deleted
             deleted.flush();
         }
