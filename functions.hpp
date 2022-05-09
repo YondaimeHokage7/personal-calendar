@@ -1,7 +1,7 @@
 #ifndef PERSONAL_CALENDAR_FUNCTIONS_HPP
 #define PERSONAL_CALENDAR_FUNCTIONS_HPP
 
-int strlen(const char* string);
+int myStrlen(const char* string);
 
 void strcpy(const char* source, char* destination);
 

@@ -1,6 +1,6 @@
 #include "functions.hpp"
 
-int strlen(const char* string)
+int myStrlen(const char* string)
 {
     int counter{0};
     for (int i{0}; string[i] != '\0'; i++)
@@ -21,7 +21,7 @@ void strcpy(const char* source, char* destination)
 bool strcmp(char* action, char* possibleAction)
 {
     bool result{true};
-    if (strlen(action) != strlen(possibleAction))
+    if (myStrlen(action) != myStrlen(possibleAction))
     {
         result = false;
     }
