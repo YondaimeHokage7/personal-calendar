@@ -54,17 +54,17 @@ void deleteEvent()
     std::stringstream saved;
     std::stringstream deleted;
     char* lineRead{new char[defaultCommentSize]};
-    for (int i{0}; !f.eof(); i++)
+    while (!f.eof())
     {
         f.getline(lineRead, defaultCommentSize, '\n');
         if (strcmp(lineRead, userInput))
         {
             putInStringStream(lineRead, deleted); //слага името на event в deleted
-            f.getline(lineRead, defaultCommentSize,'\n');
+            f.getline(lineRead, defaultCommentSize, '\n');
             putInStringStream(lineRead, deleted); //слага интервала на event в deleted
-            f.getline(lineRead, defaultCommentSize,'\n');
+            f.getline(lineRead, defaultCommentSize, '\n');
             putInStringStream(lineRead, deleted); //слага коментара на event в deleted
-            f.getline(lineRead, defaultCommentSize,'\n');
+            f.getline(lineRead, defaultCommentSize, '\n');
             putInStringStream(lineRead, deleted); // слага новия ред в deleted
             deleted.flush();
         }
