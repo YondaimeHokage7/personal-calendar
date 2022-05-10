@@ -65,11 +65,19 @@ public:
     int getEndYear() const
     { return endDate.getYear(); }
 
+    //! Селектор за начална дата
+    Date getStartDate() const
+    { return startDate; }
+
+    //! Селектор за крайна дата
+    Date getEndDate() const
+    { return endDate; }
+
     //! Мутатор за начален ден
     void setStartDay(unsigned _day);
 
     //! Мутатор за нчален месец
-    void setStartMonth(unsigned  _month);
+    void setStartMonth(unsigned _month);
 
     //! Мутатор за начална година
     void setStartYear(int _year);
@@ -90,7 +98,7 @@ public:
     void setEndYear(int _year);
 
     //! Мутатор за краен час
-    void setEndHours(unsigned  _hours);
+    void setEndHours(unsigned _hours);
 
     //!Мутатор за крайни минути
     void setEndMinutes(unsigned _minutes);
