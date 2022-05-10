@@ -1,5 +1,6 @@
 #ifndef PERSONAL_CALENDAR_DATE_HPP
 #define PERSONAL_CALENDAR_DATE_HPP
+
 #include <iostream>
 
 //! Клас за дата, който има член-данни от тип unsigned за ден и месец и от тип int за година
@@ -30,10 +31,15 @@ public:
 
     //! Мутатор за ден
     void setDay(const unsigned _day);
+
     //! Мутатор за месеци
     void setMonth(const unsigned _month);
+
     //! Мутатор за години
     void setYear(const int _year);
+
+    //! Функция, която преценява дали дата е между две други
+    bool isInAnInterval(const Date&, const Date&);
 
     friend std::istream& operator>>(std::istream&, Date&);
 };

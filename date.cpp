@@ -18,6 +18,29 @@ void Date::setYear(const int _year)
     year = _year;
 }
 
+bool Date::isInAnInterval(const Date& startDate, const Date& endDate)
+{
+    bool betweenYears{startDate.getYear() < this->getYear() && this->getYear() < endDate.getYear()}; //minava 100%
+    bool equalYears{startDate.getYear() == this->getYear() && this->getYear() == endDate.getYear()};
+    bool betweenMonths(startDate.getMonth() < this->getMonth() && this->getMonth() < endDate.getMonth()); //minava 100% if equalYears == true
+    bool equalMonths{startDate.getMonth() == this->getMonth() && this->getMonth() == endDate.getMonth()};
+    bool betweenDays{startDate.getDay() < this->getDay() && this->getDay() < endDate.getDay()}; //minava 100% if equalMonths == true
+    bool equalDays{startDate.getDay() == this->getDay() && this->getDay() == endDate.getDay()};
+    /*bool year1, year2, month1, month2, day1, day2;
+    year1 = startDate.getYear() <= this->getYear();
+    year2 = endDate.getYear() >= this->getYear();
+    month1 = startDate.getMonth() <= this->getMonth();
+    std::cerr << startDate.getMonth() << '\n';
+    std::cerr << this->getMonth() << '\n';
+    month2 = endDate.getMonth() >= this->getMonth();
+    day1 = startDate.getDay() <= this->getDay();
+    day2 = endDate.getDay() >= this->getDay();
+    return year1 && year2 && month1 && month2 && day1 && day2;
+    */
+    //BUG!!! (13-04-2002).isInInterval(12-04-2022, 14-04-2022) = true
+    return (betweenYears) || (equalYears && betweenMonths) || (equalMonths && betweenDays) || (equalDays && equalMonths && equalYears);
+}
+
 std::istream& operator>>(std::istream& is, Date& date)
 {
     char c; //държи '-'
