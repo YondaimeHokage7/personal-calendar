@@ -34,3 +34,12 @@ bool strcmp(char* action, char* possibleAction)
     }
     return result;
 }
+
+void putInStringStream(char* string, std::stringstream& saved)
+{
+    for (int i{0}; string[i] != '\0'; i++)
+    {
+        saved << string[i];
+    }
+}
+
