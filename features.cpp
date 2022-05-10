@@ -80,6 +80,48 @@ void deleteEvent()
     ofs << saved.str();
 }
 
+void schedule()
+{
+    std::stringstream toBePrinted;
+    std::cout << "Enter a date: ";
+    Date date;
+    std::cin >> date;
+    std::ifstream fi("appointments.txt", std::ios::in);
+    TimeInterval interval;
+    std::stringstream intervals;
+    std::stringstream trash;
+    char* name{new char[defaultNameSize]};
+    char* intervalStr{new char[34]};
+    char* comment{new char[defaultCommentSize]};
+    while (fi.good() && fi.peek() != '\n')
+    {
+        fi.getline(name, defaultNameSize, '\n');
+        fi.getline(intervalStr, 34, '\n');
+        intervals << intervalStr;
+        intervals >> interval;
+        fi.getline(comment, defaultCommentSize, '\n');
+        if (date.isInAnInterval(interval.getStartDate(), interval.getEndDate()))
+        {
+            toBePrinted << name << '\n' << intervalStr << '\n' << comment << '\n';
+        }
+        intervals.clear();
+    }
+    delete[] name;
+    delete[] intervalStr;
+    delete[] comment;
+    /*int counter{0};
+    while (!intervals.eof())
+    {
+        intervals >> interval;
+        counter++;
+        if (date.isInAnInterval(date, interval.getStartDate(), interval.getEndDate()))
+        {
+
+        }
+    }*/
+    std::cout << toBePrinted.str();
+}
+
 void determineAction()
 {
     char possibleActions[numberOfActions][9]{"Create", "Delete", "Schedule", "Change", "Search", "Busyness", "Free"};
@@ -93,8 +135,11 @@ void determineAction()
     {
         deleteEvent();
     }
-    /*else if(strcmp(action,possibleActions[2]))
-    else if(strcmp(action,possibleActions[3]))
+    else if(strcmp(action,possibleActions[2]))
+    {
+        schedule();
+    }
+    /*else if(strcmp(action,possibleActions[3]))
     else if(strcmp(action,possibleActions[4]))
     else if(strcmp(action,possibleActions[5]))
     else if(strcmp(action,possibleActions[6]))
