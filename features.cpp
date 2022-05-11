@@ -55,7 +55,7 @@ void deleteEvent()
     std::stringstream saved;
     std::stringstream deleted;
     char* lineRead{new char[defaultCommentSize]};
-    while (!f.eof())
+    while (f.good())
     {
         f.getline(lineRead, defaultCommentSize, '\n');
         if (strcmp(lineRead, userInput))
@@ -93,7 +93,7 @@ void schedule()
     char* name{new char[defaultNameSize]};
     char* intervalStr{new char[34]};
     char* comment{new char[defaultCommentSize]};
-    while (fi.good() && fi.peek() != '\n')
+    while (fi.good() && (fi.peek() != 10 || fi.peek() != 13))
     {
         fi.getline(name, defaultNameSize, '\n');
         fi.getline(intervalStr, 34, '\n');
@@ -102,7 +102,10 @@ void schedule()
         fi.getline(comment, defaultCommentSize, '\n');
         if (date.isInAnInterval(interval.getStartDate(), interval.getEndDate()))
         {
-            toBePrinted << name << '\n' << intervalStr << '\n' << comment << '\n';
+            if (!(strcmp(name, intervalStr) && strcmp(intervalStr, comment)))
+            {
+                toBePrinted << name << '\n' << intervalStr << '\n' << comment << '\n';
+            }
         }
         intervals.clear();
     }
@@ -135,7 +138,7 @@ void determineAction()
     {
         deleteEvent();
     }
-    else if(strcmp(action,possibleActions[2]))
+    else if (strcmp(action, possibleActions[2]))
     {
         schedule();
     }
