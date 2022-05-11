@@ -40,44 +40,64 @@ void create()
     appointment.setEndDate(day2, month2, year2);
     appointment.setEndTime(hours2, minutes2);
     std::ofstream fo("appointments.txt", std::ios::app);
-    fo << appointment;
+    if (fo.is_open())
+    {
+        fo << appointment;
+    }
+    else
+    {
+        std::cout << "Error!";
+    }
 }
 
 void deleteEvent()
 {
-    char* userInput{new char[defaultNameSize]};
     std::cout << "Eevent name: ";
-    std::cin.getline(userInput, defaultNameSize, '\n');
+    char* name{new char[defaultNameSize]};
+    std::cin.getline(name, defaultNameSize, '\n');
     std::cout << "Enter time interval: ";
-    TimeInterval interval;
-    std::cin >> interval;
+    char* interval{new char[34]};
+    std::cin.getline(interval, 34, '\n');
+    std::stringstream intervalStream;
+    intervalStream << interval;
+    //!!!intervalStream >> interval da se proveri za pravilnost
     std::fstream f("appointments.txt", std::ios::out | std::ios::in);
-    std::stringstream saved;
-    std::stringstream deleted;
-    char* lineRead{new char[defaultCommentSize]};
-    while (f.good())
+    if (f.is_open())
     {
-        f.getline(lineRead, defaultCommentSize, '\n');
-        if (strcmp(lineRead, userInput))
+        std::stringstream saved;
+        std::stringstream deleted;
+        char* nameRead{new char[defaultNameSize]};
+        char* intervalRead{new char[34]};
+        char* commentRead{new char[defaultCommentSize]};
+        while (f.good())
         {
-            putInStringStream(lineRead, deleted); //слага името на event в deleted
-            f.getline(lineRead, defaultCommentSize, '\n');
-            putInStringStream(lineRead, deleted); //слага интервала на event в deleted
-            f.getline(lineRead, defaultCommentSize, '\n');
-            putInStringStream(lineRead, deleted); //слага коментара на event в deleted
-            f.getline(lineRead, defaultCommentSize, '\n');
-            putInStringStream(lineRead, deleted); // слага новия ред в deleted
+            f.getline(nameRead, defaultCommentSize, '\n');
+            f.getline(intervalRead, 34, '\n');
+            f.getline(commentRead, defaultCommentSize, '\n');
+            if (strcmp(nameRead, name) && strcmp(intervalRead, interval))
+            {
+                deleted << nameRead << intervalRead << commentRead;
+            }
+            else
+            {
+                if (!(nameRead[0] == 0 && intervalRead[0] == 0 && commentRead[0] == 0))
+                {
+                    saved << nameRead << '\n' << intervalRead << '\n' << commentRead << '\n';
+                }
+            }
         }
-        else
-        {
-            putInStringStream(lineRead, saved);
-            putInStringStream("\n", saved);
-        }
+        delete[] name;
+        delete[] interval;
+        delete[] nameRead;
+        delete[] intervalRead;
+        delete[] commentRead;
+        std::ofstream ofs("appointments.txt", std::ios::trunc);
+        ofs << saved.str();
     }
-    delete[] userInput;
-    delete[] lineRead;
-    std::ofstream ofs("appointments.txt", std::ios::trunc);
-    ofs << saved.str();
+    else
+    {
+        std::cout << "Error!";
+    }
 }
 
 void schedule()
@@ -93,7 +113,7 @@ void schedule()
     char* name{new char[defaultNameSize]};
     char* intervalStr{new char[34]};
     char* comment{new char[defaultCommentSize]};
-    while (fi.good() && (fi.peek() != 10 || fi.peek() != 13))
+    while (fi.good() && (fi.peek() != '\n'))
     {
         fi.getline(name, defaultNameSize, '\n');
         fi.getline(intervalStr, 34, '\n');
@@ -112,16 +132,6 @@ void schedule()
     delete[] name;
     delete[] intervalStr;
     delete[] comment;
-    /*int counter{0};
-    while (!intervals.eof())
-    {
-        intervals >> interval;
-        counter++;
-        if (date.isInAnInterval(date, interval.getStartDate(), interval.getEndDate()))
-        {
-
-        }
-    }*/
     std::cout << toBePrinted.str();
 }
 
