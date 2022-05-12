@@ -92,39 +92,6 @@ bool operator>(const Date& date1, const Date& date2)
     return (date1.getYear() > date2.getYear()) ||
            (date1.getYear() == date2.getYear()) && (date1.getMonth() > date2.getMonth()) ||
            (date1.getYear() == date2.getYear()) && (date1.getMonth() == date2.getMonth()) && (date1.getDay() > date2.getDay());
-    /*if(date1.getYear() > date2.getYear())
-    {
-        return date1;
-    }
-    else if (date1.getYear() < date2.getYear())
-    {
-        return date2;
-    }
-    else //(date1.getYear() == date2.getYear())
-    {
-        if (date1.getMonth() > date2.getMonth())
-        {
-            return date1;
-        }
-        else if (date1.getMonth() < date2.getMonth())
-        {
-            return date2;
-        }
-        else // (date1.getMonth() == date2.getMonth())
-        {
-            if (date1.getDay() > date2.getDay())
-            {
-                return date1;
-            }
-            else if (date1.getDay() < date2.getDay())
-            {
-                return date2;
-            }
-            else
-        }
-
-    }
-     */
 }
 
 bool operator<(const Date& date1, const Date& date2)
@@ -133,4 +100,9 @@ bool operator<(const Date& date1, const Date& date2)
            (date1.getYear() == date2.getYear()) && (date1.getMonth() < date2.getMonth()) ||
            (date1.getYear() == date2.getYear()) && (date1.getMonth() == date2.getMonth()) && (date1.getDay() < date2.getDay());
 
+}
+
+bool operator==(const Date& date1, const Date& date2)
+{
+    return date1.getYear() == date2.getYear() && date1.getMonth() == date2.getMonth() && date1.getDay() == date2.getDay();
 }
