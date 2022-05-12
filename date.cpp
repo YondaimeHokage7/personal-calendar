@@ -15,13 +15,14 @@ void Date::ensureValidDate()
         std::cout << "Setting default day";
         day = 1;
     }
-    if (day > 30 && month == 4 || month == 6 || month == 9 || month == 11)
+    if (day > 30 && (month == 4 || month == 6 || month == 9 || month == 11))
     {
+        std::cout << this->day;
         std::cout << "Invalid day!";
         std::cout << "Setting greatest possible value for a day in the given month";
         day = 30;
     }
-    if (day > 28 && !isLeap(year) || day > 29 && isLeap(year))
+    if ((day > 28 && !isLeap(year) || day > 29 && isLeap(year)) && month == 2)
     {
         std::cout << "Invalid day!";
         std::cout << "Setting the greatest possible value for a day in February";
@@ -84,4 +85,52 @@ std::ostream& operator<<(std::ostream& os, const Date& date)
         return os << 0 << date.getDay() << '-' << date.getMonth() << '-' << date.getYear();
     }
     return os << date.getDay() << '-' << date.getMonth() << '-' << date.getYear();
+}
+
+bool operator>(const Date& date1, const Date& date2)
+{
+    return (date1.getYear() > date2.getYear()) ||
+           (date1.getYear() == date2.getYear()) && (date1.getMonth() > date2.getMonth()) ||
+           (date1.getYear() == date2.getYear()) && (date1.getMonth() == date2.getMonth()) && (date1.getDay() > date2.getDay());
+    /*if(date1.getYear() > date2.getYear())
+    {
+        return date1;
+    }
+    else if (date1.getYear() < date2.getYear())
+    {
+        return date2;
+    }
+    else //(date1.getYear() == date2.getYear())
+    {
+        if (date1.getMonth() > date2.getMonth())
+        {
+            return date1;
+        }
+        else if (date1.getMonth() < date2.getMonth())
+        {
+            return date2;
+        }
+        else // (date1.getMonth() == date2.getMonth())
+        {
+            if (date1.getDay() > date2.getDay())
+            {
+                return date1;
+            }
+            else if (date1.getDay() < date2.getDay())
+            {
+                return date2;
+            }
+            else
+        }
+
+    }
+     */
+}
+
+bool operator<(const Date& date1, const Date& date2)
+{
+    return (date1.getYear() < date2.getYear()) ||
+           (date1.getYear() == date2.getYear()) && (date1.getMonth() < date2.getMonth()) ||
+           (date1.getYear() == date2.getYear()) && (date1.getMonth() == date2.getMonth()) && (date1.getDay() < date2.getDay());
+
 }

@@ -49,4 +49,8 @@ public:
 //! Предефиниране на <<
 std::ostream& operator<<(std::ostream&, const Date&);
 
+bool operator>(const Date&, const Date&);
+
+bool operator<(const Date&, const Date&);
+
 #endif //PERSONAL_CALENDAR_DATE_HPP
