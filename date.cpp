@@ -3,29 +3,29 @@
 
 void Date::ensureValidDate()
 {
-    while (month < 1 || month > 12)
+    if (month < 1 || month > 12)
     {
         std::cout << "Invalid month!\n";
-        std::cout << "Enter a valid month!";
-        std::cin >> month;
+        std::cout << "Setting default month";
+        month = 1;
     }
-    while (day < 1 || day > 31)
+    if (day < 1 || day > 31)
     {
         std::cout << "Invalid day!\n";
-        std::cout << "Enter a valid day";
-        std::cin >> day;
+        std::cout << "Setting default day";
+        day = 1;
     }
-    while (day > 30 && month == 4 || month == 6 || month == 9 || month == 11)
+    if (day > 30 && month == 4 || month == 6 || month == 9 || month == 11)
     {
         std::cout << "Invalid day!";
-        std::cout << "Enter a valid day!";
-        std::cin >> day;
+        std::cout << "Setting greatest possible value for a day in the given month";
+        day = 30;
     }
-    while (day > 28 && !isLeap(year) || day > 29 && isLeap(year))
+    if (day > 28 && !isLeap(year) || day > 29 && isLeap(year))
     {
         std::cout << "Invalid day!";
-        std::cout << "Enter a valid day!";
-        std::cin >> day;
+        std::cout << "Setting the greatest possible value for a day in February";
+        isLeap(year) ? day = 29 : day = 28;
     }
 }
 
