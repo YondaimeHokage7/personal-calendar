@@ -20,7 +20,7 @@ void Date::setYear(const int _year)
 
 bool Date::isInAnInterval(const Date& startDate, const Date& endDate)
 {
-    bool betweenYears{startDate.getYear() <= this->getYear() && this->getYear() <= endDate.getYear()}; //minava 100%
+    bool betweenYears{startDate.getYear() < this->getYear() && this->getYear() < endDate.getYear()}; //minava 100%
     bool equalYears{startDate.getYear() == this->getYear() && this->getYear() == endDate.getYear()};
     bool betweenMonths(startDate.getMonth() <= this->getMonth() && this->getMonth() <= endDate.getMonth()); //minava 100% if equalYears == true
     bool equalMonths{startDate.getMonth() == this->getMonth() && this->getMonth() == endDate.getMonth()};
