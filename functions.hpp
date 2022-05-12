@@ -2,6 +2,11 @@
 #define PERSONAL_CALENDAR_FUNCTIONS_HPP
 
 #include <sstream>
+#include "date.hpp"
+
+bool isLeap(int year);
+
+void ensureValidDate(Date&);
 
 int myStrlen(const char* string);
 
