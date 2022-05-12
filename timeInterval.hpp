@@ -25,6 +25,22 @@ public:
     //! Конструктор с параметри
     TimeInterval(Date _startDate, Time _startTime, Date _endDate, Time _endTime);
 
+    //! Селектор за начална дата
+    Date getStartDate() const
+    { return startDate; }
+
+    //! Селектор за начално време
+    Time getStartTime() const
+    { return startTime; }
+
+    //! Селектор за крайна дата
+    Date getEndDate() const
+    { return endDate; }
+
+    //! Селектор за крайно време
+    Time getEndTime() const
+    { return endTime; }
+
     //! Селектор за час на начало време
     unsigned getStartH() const
     { return startTime.getHours(); }
@@ -65,13 +81,6 @@ public:
     int getEndYear() const
     { return endDate.getYear(); }
 
-    //! Селектор за начална дата
-    Date getStartDate() const
-    { return startDate; }
-
-    //! Селектор за крайна дата
-    Date getEndDate() const
-    { return endDate; }
 
     //! Мутатор за начален ден
     void setStartDay(unsigned _day);
