@@ -77,3 +77,14 @@ std::ostream& operator<<(std::ostream& os, const TimeInterval& timeInterval)
               << timeInterval.getEndYear() << '-' << timeInterval.getEndMonth() << '-' << timeInterval.getEndDay() << ' ' << timeInterval.getEndH() << ':' << timeInterval.getEndM();*/
 }
 
+bool operator>(const TimeInterval& interval1, const TimeInterval& interval2)
+{
+    return (interval1.getStartDate() > interval2.getStartDate()) ||
+           (interval1.getStartDate() == interval2.getStartDate()) && (interval1.getStartTime() > interval2.getStartTime());
+}
+
+bool operator<(const TimeInterval& interval1, const TimeInterval& interval2)
+{
+    return (interval1.getStartDate() < interval2.getStartDate()) ||
+           (interval1.getStartDate() == interval2.getStartDate()) && (interval1.getStartTime() < interval2.getStartTime());
+}

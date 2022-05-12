@@ -117,5 +117,8 @@ public:
     friend std::ostream& operator<<(std::ostream&, const TimeInterval&);
 };
 
+bool operator>(const TimeInterval&, const TimeInterval&);
+
+bool operator<(const TimeInterval&, const TimeInterval&);
 
 #endif //PERSONAL_CALENDAR_TIMEINTERVAL_HPP
