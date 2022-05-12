@@ -1,7 +1,25 @@
 #include "time.hpp"
 
+void Time::ensureValidTime()
+{
+    while (hours > 23)
+    {
+        std::cout << "Invalid value for hours!\n";
+        std::cout << "Enter a new one";
+        std::cin >> hours;
+    }
+    while (minutes > 59)
+    {
+        std::cout << "Invalid value for minutes!\n";
+        std::cout << "Enter a new one";
+        std::cin >> minutes;
+    }
+}
+
 Time::Time(unsigned int _hours, unsigned int _minutes) : hours(_hours), minutes(_minutes)
-{}
+{
+    ensureValidTime();
+}
 
 void Time::setHours(unsigned _hours)
 {
@@ -16,7 +34,9 @@ void Time::setMinutes(unsigned int _minutes)
 std::istream& operator>>(std::istream& is, Time& t)
 {
     char c; // държи ':'
-    return is >> t.hours >> c >> t.minutes;
+    is >> t.hours >> c >> t.minutes;
+    t.ensureValidTime();
+    return is;
 }
 
 std::ostream& operator<<(std::ostream& os, const Time& t)

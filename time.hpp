@@ -8,10 +8,12 @@
 class Time
 {
 private:
-    //! Цяло число показващо часовете със стойности от 0 до 24
+    //! Цяло число показващо часовете със стойности от 0 до 23
     unsigned hours;
-    //! Цяло число показващо минутите със стойности от 0 до 60
+    //! Цяло число показващо минутите със стойности от 0 до 59
     unsigned minutes;
+    //! Подсигурява валдиност на час
+    void ensureValidTime();
 public:
     //! Конструктор с параметри
     Time(unsigned _hours = 0, unsigned _minutes = 0);
@@ -20,7 +22,7 @@ public:
     unsigned getHours() const
     { return hours; }
 
-    //! Селектор за часове
+    //! Селектор за минути
     unsigned getMinutes() const
     { return minutes; }
 
