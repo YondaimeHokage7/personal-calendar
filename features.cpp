@@ -29,16 +29,13 @@ void create()
     std::cin.getline(placeHolder, defaultCommentSize, '\n');
     appointment.setComment(placeHolder);
     delete[] placeHolder;
-    int year1, year2;
-    unsigned month1, month2, day1, day2, hours1, hours2, minutes1, minutes2;
     std::cout << "Interval: ";
-    char c;
-    std::cin >> day1 >> c >> month1 >> c >> year1 >> hours1 >> c >> minutes1 >> day2 >> c >> month2 >> c >> year2 >> hours2 >> c >> minutes2;
-    std::cin.ignore();
-    appointment.setStartDate(day1, month1, year1);
-    appointment.setStartTime(hours1, minutes1);
-    appointment.setEndDate(day2, month2, year2);
-    appointment.setEndTime(hours2, minutes2);
+    TimeInterval interval;
+    std::cin >> interval;
+    appointment.setStartDate(interval.getStartDate().getDay(), interval.getStartDate().getMonth(), interval.getStartDate().getYear());
+    appointment.setStartTime(interval.getStartTime().getHours(), interval.getStartTime().getMinutes());
+    appointment.setEndDate(interval.getEndDate().getDay(), interval.getEndDate().getMonth(), interval.getEndDate().getYear());
+    appointment.setEndTime(interval.getEndTime().getHours(), interval.getEndTime().getMinutes());
     std::ofstream fo("appointments.txt", std::ios::app);
     if (fo.is_open())
     {
