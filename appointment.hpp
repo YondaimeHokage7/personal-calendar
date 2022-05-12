@@ -39,6 +39,9 @@ public:
     //! Деструктор
     ~Appointment();
 
+    TimeInterval getInterval() const
+    { return interval; }
+
     //! Селекторр за час на начало
     unsigned getStartTimeH() const
     { return interval.getStartH(); }
