@@ -13,6 +13,8 @@ private:
     unsigned month;
     //! Цяло число за година
     int year;
+    //! Подсигурява валидност на датата
+    void ensureValidDate();
 public:
     //! Конструктор с параметри
     Date(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
@@ -41,9 +43,10 @@ public:
     //! Функция, която преценява дали дата е между две други
     bool isInAnInterval(const Date&, const Date&);
 
+    //! Предефиниране на >>
     friend std::istream& operator>>(std::istream&, Date&);
 };
-
+//! Предефиниране на <<
 std::ostream& operator<<(std::ostream&, const Date&);
 
 #endif //PERSONAL_CALENDAR_DATE_HPP

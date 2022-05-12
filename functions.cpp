@@ -8,7 +8,8 @@ bool isLeap(int year)
     return leapPrerequisite && (!leapException || leapExceptionOfTheException);
 }
 
-void ensureValidDate(Date& date)
+/*
+    void ensureValidDate(Date& date)
 {
     while (date.getMonth() < 1 || date.getMonth() > 12)
     {
@@ -35,7 +36,7 @@ void ensureValidDate(Date& date)
         std::cin >> date;
     }
 }
-
+*/
 int myStrlen(const char* string)
 {
     int counter{0};
@@ -71,11 +72,11 @@ bool strcmp(char* action, char* possibleAction)
     return result;
 }
 
-void putInStringStream(char* string, std::stringstream& saved)
+/*void putInStringStream(char* string, std::stringstream& saved)
 {
     for (int i{0}; string[i] != '\0'; i++)
     {
         saved << string[i];
     }
-}
+}*/
 
