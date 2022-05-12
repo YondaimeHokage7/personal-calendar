@@ -113,7 +113,7 @@ void schedule()
     char* name{new char[defaultNameSize]};
     char* intervalStr{new char[34]};
     char* comment{new char[defaultCommentSize]};
-    while (fi.good() && (fi.peek() != '\n'))
+    while (fi.good())
     {
         fi.getline(name, defaultNameSize, '\n');
         fi.getline(intervalStr, 34, '\n');
