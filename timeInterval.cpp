@@ -65,6 +65,24 @@ void TimeInterval::setEndMinutes(unsigned _minutes)
     endTime.setMinutes(_minutes);
 }
 
+/*void TimeInterval::setStartDate(const Date& date)
+{
+    this->startDate = date;
+}
+
+void TimeInterval::setStartTime(const Time& time)
+{
+    this->startTime = time
+}
+void TimeInterval::setEndDate(const Date& date)
+{
+    this->endDate = date;
+}
+void TimeInterval::setEndTime(const Time& time)
+{
+    this->endTime = time;
+}*/
+
 std::istream& operator>>(std::istream& is, TimeInterval& timeInterval)
 {
     return is >> timeInterval.startDate >> timeInterval.startTime >> timeInterval.endDate >> timeInterval.endTime;
