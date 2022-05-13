@@ -5,14 +5,14 @@ void Time::ensureValidTime()
     while (hours > 23)
     {
         std::cout << "Invalid value for hours!\n";
-        std::cout << "Enter a new one";
-        std::cin >> hours;
+        std::cout << "Setting default value for hours\n";
+        hours = 0;
     }
     while (minutes > 59)
     {
         std::cout << "Invalid value for minutes!\n";
-        std::cout << "Enter a new one";
-        std::cin >> minutes;
+        std::cout << "Setting default value for minutes";
+        minutes = 0;
     }
 }
 

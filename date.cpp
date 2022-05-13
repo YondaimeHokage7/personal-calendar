@@ -6,26 +6,26 @@ void Date::ensureValidDate()
     if (month < 1 || month > 12)
     {
         std::cout << "Invalid month!\n";
-        std::cout << "Setting default month";
+        std::cout << "Setting default month\n";
         month = 1;
     }
     if (day < 1 || day > 31)
     {
         std::cout << "Invalid day!\n";
-        std::cout << "Setting default day";
+        std::cout << "Setting default day\n";
         day = 1;
     }
     if (day > 30 && (month == 4 || month == 6 || month == 9 || month == 11))
     {
         std::cout << this->day;
-        std::cout << "Invalid day!";
-        std::cout << "Setting greatest possible value for a day in the given month";
+        std::cout << "Invalid day!\n";
+        std::cout << "Setting greatest possible value for a day in the given month\n";
         day = 30;
     }
     if ((day > 28 && !isLeap(year) || day > 29 && isLeap(year)) && month == 2)
     {
         std::cout << "Invalid day!";
-        std::cout << "Setting the greatest possible value for a day in February";
+        std::cout << "Setting the greatest possible value for a day in February\n";
         isLeap(year) ? day = 29 : day = 28;
     }
 }
