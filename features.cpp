@@ -53,11 +53,12 @@ void deleteEvent()
     char* name{new char[defaultNameSize]};
     std::cin.getline(name, defaultNameSize, '\n');
     std::cout << "Enter time interval: ";
-    char* interval{new char[34]};
-    std::cin.getline(interval, 34, '\n');
+    char* intervalString{new char[34]};
+    TimeInterval interval;
+    std::cin >> interval;
     std::stringstream intervalStream;
     intervalStream << interval;
-    //!!!intervalStream >> interval da se proveri za pravilnost
+    intervalStream >> intervalString;
     std::fstream f("appointments.txt", std::ios::out | std::ios::in);
     if (f.is_open())
     {
@@ -71,7 +72,7 @@ void deleteEvent()
             f.getline(nameRead, defaultCommentSize, '\n');
             f.getline(intervalRead, 34, '\n');
             f.getline(commentRead, defaultCommentSize, '\n');
-            if (strcmp(nameRead, name) && strcmp(intervalRead, interval))
+            if (strcmp(nameRead, name) && strcmp(intervalRead, intervalString))
             {
                 deleted << nameRead << intervalRead << commentRead;
             }
@@ -84,7 +85,7 @@ void deleteEvent()
             }
         }
         delete[] name;
-        delete[] interval;
+        delete[] intervalString;
         delete[] nameRead;
         delete[] intervalRead;
         delete[] commentRead;
@@ -99,6 +100,7 @@ void deleteEvent()
 
 void schedule()
 {
+    //Може когато се създават още да са сортирани
     std::stringstream toBePrinted;
     std::cout << "Enter a date: ";
     Date date;
@@ -124,12 +126,112 @@ void schedule()
                 toBePrinted << name << '\n' << intervalStr << '\n' << comment << '\n';
             }
         }
-        intervals.clear();
     }
+    fi.close();
     delete[] name;
     delete[] intervalStr;
     delete[] comment;
     std::cout << toBePrinted.str();
+}
+
+void change()
+{
+    std::stringstream changed;
+    std::cout << "Eevent name: ";
+    char* name{new char[defaultNameSize]};
+    std::cin.getline(name, defaultNameSize, '\n');
+    std::cout << "Enter time interval: ";
+    char* interval{new char[34]};
+    std::cin.getline(interval, 34, '\n');
+    std::stringstream intervalStream;
+    intervalStream << interval;
+    char* comment{new char[defaultCommentSize]{}};
+    std::ifstream appointments("appointments.txt", std::ios::in);
+    char* nameRead{new char[defaultNameSize]{}};
+    char* intervalRead{new char[34]{}};
+    char* commentRead{new char[defaultCommentSize]{}};
+    while (appointments.good())
+    {
+        bool executed{false};
+        appointments.getline(nameRead, defaultNameSize, '\n');
+        appointments.getline(intervalRead, 34, '\n');
+        appointments.getline(commentRead, defaultCommentSize, '\n');
+        if (strcmp(name, nameRead) && strcmp(interval, intervalRead))
+        {
+            char answer[4];
+            std::cout << "Would you like to change the name of the event?\n";
+            std::cin.getline(answer, 4, '\n');
+            if (strcmp(answer, "yes"))
+            {
+                std::cout << "Enter a new name: ";
+                std::cin.getline(name, defaultNameSize, '\n');
+            }
+            std::cout << "Would you like to change the time interval of the event?\n";
+            std::cin.getline(answer, 4, '\n');
+            std::stringstream currentInterval;
+            currentInterval << intervalRead;
+            if (strcmp(answer, "yes"))
+            {
+                Date newStartDate;
+                Time newStartTime;
+                Date newEndDate;
+                Time newEndTime;
+                currentInterval >> newStartDate >> newStartTime >> newEndDate >> newStartTime;
+                std::cout << "Would you like to change the start date?\n";
+                std::cin.getline(answer, 4, '\n');
+                if (strcmp(answer, "yes"))
+                {
+                    std::cout << "Enter a new start date: ";
+                    std::cin >> newStartDate;
+                    std::cin.ignore();
+                }
+                std::cout << "Would you like to change the start time?\n";
+                std::cin.getline(answer, 4, '\n');
+                if (strcmp(answer, "yes"))
+                {
+                    std::cout << "Enter a new start time: ";
+                    std::cin >> newStartTime;
+                    std::cin.ignore();
+                }
+                std::cout << "Would you like to change the end date?\n";
+                std::cin.getline(answer, 4, '\n');
+                if (strcmp(answer, "yes"))
+                {
+                    std::cout << "Enter a new end date: ";
+                    std::cin >> newEndDate;
+                    std::cin.ignore();
+                }
+                std::cout << "Would you like to change the end time?\n";
+                std::cin.getline(answer, 4, '\n');
+                if (strcmp(answer, "yes"))
+                {
+                    std::cout << "Enter a new end time: \n";
+                    std::cin >> newEndTime;
+                    std::cin.ignore();
+                }
+                //currentInterval.str("");
+                TimeInterval newInterval(newStartDate, newStartTime, newEndDate, newEndTime);
+                currentInterval << newInterval;
+            }
+            std::cout << "Would you like to change the comment of the event?\n";
+            std::cin.getline(answer, 4, '\n');
+            strcpy(commentRead, comment);
+            if (strcmp(answer, "yes"))
+            {
+                std::cout << "Enter a new comment: ";
+                std::cin.getline(comment, defaultCommentSize, '\n');
+            }
+            changed << name << '\n' << currentInterval.str() << '\n' << comment << '\n';
+            executed = true;
+        }
+        if ((!executed) && !(strcmp(nameRead, intervalRead) && strcmp(intervalRead, commentRead)))
+        {
+            changed << nameRead << '\n' << intervalRead << '\n' << commentRead << '\n';
+        }
+    }
+    appointments.close();
+    std::ofstream newAppointments("appointments.txt", std::ios::trunc);
+    newAppointments << changed.str();
 }
 
 void determineAction()
@@ -149,8 +251,11 @@ void determineAction()
     {
         schedule();
     }
-    /*else if(strcmp(action,possibleActions[3]))
-    else if(strcmp(action,possibleActions[4]))
+    else if (strcmp(action, possibleActions[3]))
+    {
+        change();
+    }
+    /*else if(strcmp(action,possibleActions[4]))
     else if(strcmp(action,possibleActions[5]))
     else if(strcmp(action,possibleActions[6]))
     else if(strcmp(action,possibleActions[7]))
