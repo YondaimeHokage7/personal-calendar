@@ -53,11 +53,11 @@ void Date::setYear(const int _year)
 bool Date::isInAnInterval(const Date& startDate, const Date& endDate)
 {
     bool betweenYears{startDate.getYear() < this->getYear() && this->getYear() < endDate.getYear()}; //minava 100%
-    bool equalYears{startDate.getYear() == this->getYear() && this->getYear() == endDate.getYear()};
-    bool betweenMonths(startDate.getMonth() <= this->getMonth() && this->getMonth() <= endDate.getMonth()); //minava 100% if equalYears == true
-    bool equalMonths{startDate.getMonth() == this->getMonth() && this->getMonth() == endDate.getMonth()};
-    bool betweenDays{startDate.getDay() <= this->getDay() && this->getDay() <= endDate.getDay()}; //minava 100% if equalMonths == true
-    bool equalDays{startDate.getDay() == this->getDay() && this->getDay() == endDate.getDay()};
+    bool equalYears{startDate.getYear() == this->getYear() || this->getYear() == endDate.getYear()};
+    bool betweenMonths(startDate.getMonth() < this->getMonth() && this->getMonth() < endDate.getMonth()); //minava 100% if equalYears == true
+    bool equalMonths{startDate.getMonth() == this->getMonth() || this->getMonth() == endDate.getMonth()};
+    bool betweenDays{startDate.getDay() < this->getDay() && this->getDay() < endDate.getDay()}; //minava 100% if equalMonths == true && equalYears
+    bool equalDays{startDate.getDay() == this->getDay() || this->getDay() == endDate.getDay()};
     //BUG!!! (13-04-2002).isInInterval(12-04-2022, 14-04-2022) = true
     return (betweenYears) || (equalYears && betweenMonths) || (equalYears && equalMonths && betweenDays) || (equalDays && equalMonths && equalYears);
 }
