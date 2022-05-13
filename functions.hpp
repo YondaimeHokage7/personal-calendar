@@ -6,13 +6,11 @@
 
 bool isLeap(int year);
 
-void ensureValidDate(Date&);
-
 int myStrlen(const char* string);
 
 void strcpy(const char* source, char* destination);
 
-bool strcmp(char* action, char* possibleAction);
+bool strcmp(const char* string1, const char* string2);
 
 void putInStringStream(char* string, std::stringstream& saved);
 
