@@ -7,36 +7,6 @@ bool isLeap(int year)
     bool leapExceptionOfTheException{year % 400 == 0};
     return leapPrerequisite && (!leapException || leapExceptionOfTheException);
 }
-
-/*
-    void ensureValidDate(Date& date)
-{
-    while (date.getMonth() < 1 || date.getMonth() > 12)
-    {
-        std::cout << "Invalid month!\n";
-        std::cout << "Enter a new date!";
-        std::cin >> date;
-    }
-    while (date.getDay() < 1 || date.getDay() > 31)
-    {
-        std::cout << "Invalid day!\n";
-        std::cout << "Enter a new date!";
-        std::cin >> date;
-    }
-    while (date.getDay() > 30 && date.getMonth() == 4 || date.getMonth() == 6 || date.getMonth() == 9 || date.getMonth() == 11)
-    {
-        std::cout << "Invalid day!";
-        std::cout << "Enter a new date!";
-        std::cin >> date;
-    }
-    while (date.getDay() > 28 && !isLeap(date.getYear()) || date.getDay() > 29 && isLeap(date.getYear()))
-    {
-        std::cout << "Invalid day!";
-        std::cout << "Enter a new date!";
-        std::cin >> date;
-    }
-}
-*/
 int myStrlen(const char* string)
 {
     int counter{0};
@@ -55,28 +25,19 @@ void strcpy(const char* source, char* destination)
     }
 }
 
-bool strcmp(char* action, char* possibleAction)
+bool strcmp(const char* string1,const char* string2)
 {
     bool result{true};
-    if (myStrlen(action) != myStrlen(possibleAction))
+    if (myStrlen(string1) != myStrlen(string2))
     {
         result = false;
     }
-    for (int i{0}; action[i] != '\0' && possibleAction[i] != '\0' && result; i++)
+    for (int i{0}; string1[i] != '\0' && string2[i] != '\0' && result; i++)
     {
-        if (action[i] != possibleAction[i])
+        if (string1[i] != string2[i])
         {
             result = false;
         }
     }
     return result;
 }
-
-/*void putInStringStream(char* string, std::stringstream& saved)
-{
-    for (int i{0}; string[i] != '\0'; i++)
-    {
-        saved << string[i];
-    }
-}*/
-
