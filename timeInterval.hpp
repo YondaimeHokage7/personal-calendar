@@ -30,7 +30,7 @@ public:
     TimeInterval(Date _startDate, Time _startTime, Date _endDate, Time _endTime);
 
     //!
-    bool isBetween(const TimeInterval&, const TimeInterval&) const;
+    bool isIn(const TimeInterval&) const;
 
     //! Селектор за начална дата
     const Date& getStartDate() const

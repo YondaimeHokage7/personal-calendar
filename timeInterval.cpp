@@ -1,5 +1,6 @@
 #include <sstream>
 #include "timeInterval.hpp"
+#include "date.hpp"
 #include "time.hpp"
 
 void TimeInterval::ensureValidInterval()
@@ -34,9 +35,12 @@ TimeInterval::TimeInterval(Date _startDate, Time _startTime, Date _endDate, Time
     ensureValidInterval();
 }
 
-bool TimeInterval::isBetween(const TimeInterval& interval1, const TimeInterval& interval2) const
+bool TimeInterval::isIn(const TimeInterval& interval1) const
 {
-    return (interval1.getStartDate() <= this->getStartDate() && this->getEndDate() <= interval2.getEndDate() && interval1.getStartTime() <= this->getStartTime() && this->getEndTime() <= interval2.getEndTime());
+    bool isInDate{this->startDate.isInAnInterval(this->startDate,interval1.getStartDate())};
+    bool equalDates{this->getStartDate() == interval1.getStartDate() || this->getStartDate() == interval1.getEndDate()};
+    bool isInTime{interval1.getStartTime().isIn(interval1.getStartTime(),interval1.getEndTime())};
+    return (isInDate || (equalDates && isInTime));
 }
 
 //! Мутатор за начален ден
