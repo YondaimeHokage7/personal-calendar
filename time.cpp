@@ -31,6 +31,14 @@ void Time::setMinutes(unsigned int _minutes)
     minutes = _minutes;
 }
 
+bool Time::isIn(const Time& time1, const Time& time2) const
+{
+    bool betweenHours{time1.getHours() <= this->getHours() && this->getHours() <= time2.getHours()};
+    bool betweenMinutes{time1.getMinutes() < this->getMinutes() && this->getMinutes() < time2.getMinutes()};
+    bool equalHours{time1.getHours() == this->getHours() || this->getHours() == time2.getHours()};
+    return betweenHours || equalHours && betweenMinutes;
+}
+
 std::istream& operator>>(std::istream& is, Time& t)
 {
     char c; // държи ':'

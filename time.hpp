@@ -32,6 +32,8 @@ public:
     //! Мутатор за минути
     void setMinutes(unsigned _minutes);
 
+    bool isIn(const Time&, const Time&) const;
+
     friend std::istream& operator>>(std::istream&, Time&);
 };
 
