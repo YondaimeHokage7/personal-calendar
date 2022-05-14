@@ -4,6 +4,8 @@
 #include <sstream>
 #include "date.hpp"
 
+bool subStringCheck(const char* substring, const char* string);
+
 int myStrlen(const char* string);
 
 void strcpy(const char* source, char* destination);
