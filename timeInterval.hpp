@@ -29,6 +29,9 @@ public:
     //! Конструктор с параметри
     TimeInterval(Date _startDate, Time _startTime, Date _endDate, Time _endTime);
 
+    //!
+    bool isBetween(const TimeInterval&, const TimeInterval&) const;
+
     //! Селектор за начална дата
     const Date& getStartDate() const
     { return startDate; }
