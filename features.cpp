@@ -18,15 +18,15 @@ void printInstructions()
 
 void create()
 {
-    char* placeHolder{new char[defaultNameSize]};
+    char* placeHolder{new char[DEFAULT]};
     Appointment appointment;
     std::cout << "Event name: ";
-    std::cin.getline(placeHolder, defaultNameSize, '\n');
+    std::cin.getline(placeHolder, DEFAULT, '\n');
     appointment.setName(placeHolder);
     delete[] placeHolder;
-    placeHolder = new char[defaultCommentSize];
+    placeHolder = new char[DEFAULT];
     std::cout << "Comment: ";
-    std::cin.getline(placeHolder, defaultCommentSize, '\n');
+    std::cin.getline(placeHolder, DEFAULT, '\n');
     appointment.setComment(placeHolder);
     delete[] placeHolder;
     std::cout << "Interval: ";
@@ -50,8 +50,8 @@ void create()
 void deleteEvent()
 {
     std::cout << "Eevent name: ";
-    char* name{new char[defaultNameSize]};
-    std::cin.getline(name, defaultNameSize, '\n');
+    char* name{new char[DEFAULT]};
+    std::cin.getline(name, DEFAULT, '\n');
     std::cout << "Enter time interval: ";
     char* intervalString{new char[34]};
     TimeInterval interval;
@@ -64,14 +64,14 @@ void deleteEvent()
     {
         std::stringstream saved;
         std::stringstream deleted;
-        char* nameRead{new char[defaultNameSize]};
+        char* nameRead{new char[DEFAULT]};
         char* intervalRead{new char[34]};
-        char* commentRead{new char[defaultCommentSize]};
+        char* commentRead{new char[DEFAULT]};
         while (f.good())
         {
-            f.getline(nameRead, defaultCommentSize, '\n');
+            f.getline(nameRead, DEFAULT, '\n');
             f.getline(intervalRead, 34, '\n');
-            f.getline(commentRead, defaultCommentSize, '\n');
+            f.getline(commentRead, DEFAULT, '\n');
             if (strcmp(nameRead, name) && strcmp(intervalRead, intervalString))
             {
                 deleted << nameRead << intervalRead << commentRead;
@@ -109,16 +109,16 @@ void schedule()
     TimeInterval interval;
     std::stringstream intervals;
     std::stringstream trash;
-    char* name{new char[defaultNameSize]};
+    char* name{new char[DEFAULT]};
     char* intervalStr{new char[34]};
-    char* comment{new char[defaultCommentSize]};
+    char* comment{new char[DEFAULT]};
     while (fi.good())
     {
-        fi.getline(name, defaultNameSize, '\n');
+        fi.getline(name, DEFAULT, '\n');
         fi.getline(intervalStr, 34, '\n');
         intervals << intervalStr;
         intervals >> interval;
-        fi.getline(comment, defaultCommentSize, '\n');
+        fi.getline(comment, DEFAULT, '\n');
         if (date.isInAnInterval(interval.getStartDate(), interval.getEndDate()))
         {
             if (!(strcmp(name, intervalStr) && strcmp(intervalStr, comment)))
@@ -138,24 +138,24 @@ void change()
 {
     std::stringstream changed;
     std::cout << "Eevent name: ";
-    char* name{new char[defaultNameSize]};
-    std::cin.getline(name, defaultNameSize, '\n');
+    char* name{new char[DEFAULT]};
+    std::cin.getline(name, DEFAULT, '\n');
     std::cout << "Enter time interval: ";
     char* interval{new char[34]};
     std::cin.getline(interval, 34, '\n');
     std::stringstream intervalStream;
     intervalStream << interval;
-    char* comment{new char[defaultCommentSize]{}};
+    char* comment{new char[DEFAULT]{}};
     std::ifstream appointments("appointments.txt", std::ios::in);
-    char* nameRead{new char[defaultNameSize]{}};
+    char* nameRead{new char[DEFAULT]{}};
     char* intervalRead{new char[34]{}};
-    char* commentRead{new char[defaultCommentSize]{}};
+    char* commentRead{new char[DEFAULT]{}};
     while (appointments.good())
     {
         bool executed{false};
-        appointments.getline(nameRead, defaultNameSize, '\n');
+        appointments.getline(nameRead, DEFAULT, '\n');
         appointments.getline(intervalRead, 34, '\n');
-        appointments.getline(commentRead, defaultCommentSize, '\n');
+        appointments.getline(commentRead, DEFAULT, '\n');
         if (strcmp(name, nameRead) && strcmp(interval, intervalRead))
         {
             char answer[4];
@@ -164,7 +164,7 @@ void change()
             if (strcmp(answer, "yes"))
             {
                 std::cout << "Enter a new name: ";
-                std::cin.getline(name, defaultNameSize, '\n');
+                std::cin.getline(name, DEFAULT, '\n');
             }
             std::cout << "Would you like to change the time interval of the event?\n";
             std::cin.getline(answer, 4, '\n');
@@ -219,7 +219,7 @@ void change()
             if (strcmp(answer, "yes"))
             {
                 std::cout << "Enter a new comment: ";
-                std::cin.getline(comment, defaultCommentSize, '\n');
+                std::cin.getline(comment, DEFAULT, '\n');
             }
             changed << name << '\n' << currentInterval.str() << '\n' << comment << '\n';
             executed = true;
@@ -229,9 +229,40 @@ void change()
             changed << nameRead << '\n' << intervalRead << '\n' << commentRead << '\n';
         }
     }
+    delete[] nameRead;
+    delete[] intervalRead;
+    delete[] commentRead;
+    delete[] name;
+    delete[] comment;
+    delete[] interval;
     appointments.close();
     std::ofstream newAppointments("appointments.txt", std::ios::trunc);
     newAppointments << changed.str();
+}
+
+void search()
+{
+    char* search{new char[DEFAULT]{}};
+    std::cin.getline(search, DEFAULT, '\n');
+    char* name{new char[DEFAULT]{}};
+    char* interval{new char[34]};
+    char* comment{new char[DEFAULT]};
+    std::stringstream print;
+    std::ifstream appointments{"appointments.txt", std::ios::in};
+    while(appointments.good())
+    {
+        appointments.getline(name, DEFAULT, '\n');
+        appointments.getline(interval, DEFAULT, '\n');
+        appointments.getline(comment, DEFAULT, '\n');
+        if (subStringCheck(search, name) || subStringCheck(search, comment))
+        {
+            if (!(name[0] == 0 && interval[0] == 0 && comment[0] == 0))
+            {
+                print << name << '\n' << interval << '\n' << comment << '\n';
+            }
+        }
+    }
+    std::cout << print.str();
 }
 
 void determineAction()
@@ -255,10 +286,12 @@ void determineAction()
     {
         change();
     }
-    /*else if(strcmp(action,possibleActions[4]))
-    else if(strcmp(action,possibleActions[5]))
+    else if(strcmp(action,possibleActions[4]))
+    {
+        search();
+    }
+    /*else if(strcmp(action,possibleActions[5]))
     else if(strcmp(action,possibleActions[6]))
-    else if(strcmp(action,possibleActions[7]))
     */
 }
 
