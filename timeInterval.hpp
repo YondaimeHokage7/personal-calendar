@@ -17,8 +17,10 @@ private:
     Time startTime;
     //! Крайно време
     Time endTime;
+
     //! Подсигурява валиден интервал
     void ensureValidInterval();
+
 public:
 
     //! Конструктор по подразбиране
@@ -124,6 +126,8 @@ public:
     friend std::istream& operator>>(std::istream&, TimeInterval&);
 
     friend std::ostream& operator<<(std::ostream&, const TimeInterval&);
+
+    TimeInterval& operator=(const char*);
 };
 
 bool operator>(const TimeInterval&, const TimeInterval&);

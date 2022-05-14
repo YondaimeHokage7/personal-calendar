@@ -14,7 +14,7 @@ void TimeInterval::ensureValidInterval()
         this->startDate = this->endDate;
         this->endDate = startPlaceholder;
     }
-    if (this->startTime > this->endTime)
+    if (this->startTime > this->endTime && this->startDate < this->endDate)
     {
         std::cout << "The starting time needs to be before the end time!";
         std::cout << "Swapping start time with end time...";
@@ -117,6 +117,15 @@ bool operator<(const TimeInterval& interval1, const TimeInterval& interval2)
 {
     return (interval1.getStartDate() < interval2.getStartDate()) ||
            (interval1.getStartDate() == interval2.getStartDate()) && (interval1.getStartTime() < interval2.getStartTime());
+}
+
+TimeInterval& TimeInterval::operator=(const char* string)
+{
+    std::stringstream interval;
+    interval << string;
+    interval >> this->startDate >> this->startTime >> this->endDate >> this->endTime;
+    ensureValidInterval();
+    return *this;
 }
 
 /*void TimeInterval::setStartDate(const Date& date)
