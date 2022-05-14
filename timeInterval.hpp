@@ -17,6 +17,8 @@ private:
     Time startTime;
     //! Крайно време
     Time endTime;
+    //! Подсигурява валиден интервал
+    void ensureValidInterval();
 public:
 
     //! Конструктор по подразбиране
@@ -80,7 +82,6 @@ public:
     //! Селектор за година на край
     int getEndYear() const
     { return endDate.getYear(); }
-
 
     void setStartDate(const Date&);
 

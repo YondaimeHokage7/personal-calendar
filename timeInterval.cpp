@@ -3,22 +3,50 @@
 #include "time.hpp"
 #include "functions.hpp"
 
+void TimeInterval::ensureValidInterval()
+{
+    if (this->startDate > this->endDate)
+    {
+        std::cout << "The starting date needs to be before the end date!";
+        std::cout << "Swapping dates...";
+        Date startPlaceholder;
+        startPlaceholder = this->startDate;
+        this->startDate = this->endDate;
+        this->endDate = startPlaceholder;
+    }
+    if (this->startTime > this->endTime)
+    {
+        std::cout << "The starting time needs to be before the end time!";
+        std::cout << "Swapping start time with end time...";
+        Time startPlaceholder;
+        startPlaceholder = this->startTime;
+        this->startTime = this->endTime;
+        this->endTime = startPlaceholder;
+    }
+}
+
 TimeInterval::TimeInterval()
-{}
+{
+    ensureValidInterval();
+}
 
 TimeInterval::TimeInterval(Date _startDate, Time _startTime, Date _endDate, Time _endTime) : startDate(_startDate), startTime(_startTime), endDate(_endDate), endTime(_endTime)
-{}
+{
+    ensureValidInterval();
+}
 
 //! Мутатор за начален ден
 void TimeInterval::setStartDay(unsigned _day)
 {
     startDate.setDay(_day);
 }
+
 //! Мутатор за начален месец
 void TimeInterval::setStartMonth(unsigned _month)
 {
     startDate.setMonth(_month);
 }
+
 //!Мутатор за начална година
 void TimeInterval::setStartYear(int _year)
 {
@@ -65,27 +93,11 @@ void TimeInterval::setEndMinutes(unsigned _minutes)
     endTime.setMinutes(_minutes);
 }
 
-/*void TimeInterval::setStartDate(const Date& date)
-{
-    this->startDate = date;
-}
-
-void TimeInterval::setStartTime(const Time& time)
-{
-    this->startTime = time
-}
-void TimeInterval::setEndDate(const Date& date)
-{
-    this->endDate = date;
-}
-void TimeInterval::setEndTime(const Time& time)
-{
-    this->endTime = time;
-}*/
-
 std::istream& operator>>(std::istream& is, TimeInterval& timeInterval)
 {
-    return is >> timeInterval.startDate >> timeInterval.startTime >> timeInterval.endDate >> timeInterval.endTime;
+    is >> timeInterval.startDate >> timeInterval.startTime >> timeInterval.endDate >> timeInterval.endTime;
+    timeInterval.ensureValidInterval();
+    return is;
 }
 
 std::ostream& operator<<(std::ostream& os, const TimeInterval& timeInterval)
@@ -106,3 +118,21 @@ bool operator<(const TimeInterval& interval1, const TimeInterval& interval2)
     return (interval1.getStartDate() < interval2.getStartDate()) ||
            (interval1.getStartDate() == interval2.getStartDate()) && (interval1.getStartTime() < interval2.getStartTime());
 }
+
+/*void TimeInterval::setStartDate(const Date& date)
+{
+    this->startDate = date;
+}
+
+void TimeInterval::setStartTime(const Time& time)
+{
+    this->startTime = time
+}
+void TimeInterval::setEndDate(const Date& date)
+{
+    this->endDate = date;
+}
+void TimeInterval::setEndTime(const Time& time)
+{
+    this->endTime = time;
+}*/
