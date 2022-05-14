@@ -41,7 +41,7 @@ public:
     void setYear(const int _year);
 
     //! Функция, която преценява дали дата е между две други
-    bool isInAnInterval(const Date&, const Date&);
+    bool isInAnInterval(const Date&, const Date&) const;
 
     //! Проверка дали годината е високостна
     bool isLeap();

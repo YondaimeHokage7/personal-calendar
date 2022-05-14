@@ -57,7 +57,7 @@ void Date::setYear(const int _year)
     year = _year;
 }
 
-bool Date::isInAnInterval(const Date& startDate, const Date& endDate)
+bool Date::isInAnInterval(const Date& startDate, const Date& endDate) const
 {
     bool betweenYears{startDate.getYear() < this->getYear() && this->getYear() < endDate.getYear()}; //minava 100%
     bool equalYears{startDate.getYear() == this->getYear() || this->getYear() == endDate.getYear()};
