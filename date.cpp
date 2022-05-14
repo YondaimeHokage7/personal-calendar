@@ -22,12 +22,20 @@ void Date::ensureValidDate()
         std::cout << "Setting greatest possible value for a day in the given month\n";
         day = 30;
     }
-    if ((day > 28 && !isLeap(year) || day > 29 && isLeap(year)) && month == 2)
+    if ((day > 28 && !this->isLeap() || day > 29 && this->isLeap()) && month == 2)
     {
         std::cout << "Invalid day!";
         std::cout << "Setting the greatest possible value for a day in February\n";
-        isLeap(year) ? day = 29 : day = 28;
+        this->isLeap() ? day = 29 : day = 28;
     }
+}
+
+bool Date::isLeap()
+{
+    bool leapPrerequisite{year % 4 == 0};
+    bool leapException{year % 100 == 0};
+    bool leapExceptionOfTheException{year % 400 == 0};
+    return leapPrerequisite && (!leapException || leapExceptionOfTheException);
 }
 
 Date::Date(unsigned int _day, unsigned int _month, int _year) : day(_day), month(_month), year(_year)

@@ -43,6 +43,9 @@ public:
     //! Функция, която преценява дали дата е между две други
     bool isInAnInterval(const Date&, const Date&);
 
+    //! Проверка дали годината е високостна
+    bool isLeap();
+
     //! Предефиниране на >>
     friend std::istream& operator>>(std::istream&, Date&);
 };

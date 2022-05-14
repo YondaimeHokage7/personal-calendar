@@ -1,12 +1,5 @@
 #include "functions.hpp"
 
-bool isLeap(int year)
-{
-    bool leapPrerequisite{year % 4 == 0};
-    bool leapException{year % 100 == 0};
-    bool leapExceptionOfTheException{year % 400 == 0};
-    return leapPrerequisite && (!leapException || leapExceptionOfTheException);
-}
 int myStrlen(const char* string)
 {
     int counter{0};
