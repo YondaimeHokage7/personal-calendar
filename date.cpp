@@ -1,5 +1,4 @@
 #include "date.hpp"
-#include "functions.hpp"
 
 void Date::ensureValidDate()
 {
