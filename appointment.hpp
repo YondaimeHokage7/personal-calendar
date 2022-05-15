@@ -95,4 +95,8 @@ public:
     friend std::ostream& operator<<(std::ostream&, const Appointment&);
 };
 
+bool operator>(Appointment&, Appointment&);
+
+bool operator<(Appointment&, Appointment&);
+
 #endif //PERSONAL_CALENDAR_APPOINTMENT_HPP

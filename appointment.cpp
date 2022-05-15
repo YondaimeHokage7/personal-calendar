@@ -87,6 +87,17 @@ std::ostream& operator<<(std::ostream& os, const Appointment& appointment)
     return os << appointment.getName() << '\n' << appointment.getInterval() << '\n' << appointment.getComment() << '\n';
 }
 
+bool operator>(Appointment& app1, Appointment& app2)
+{
+    return (app1.getInterval() > app2.getInterval());
+}
+
+bool operator<(Appointment& app1, Appointment& app2)
+{
+    return (app1.getInterval() < app2.getInterval());
+}
+
+
 /*void Appointment::setStartTime(unsigned int _hours, unsigned int _minutes)
 {
     startTime.setHours(_hours);
