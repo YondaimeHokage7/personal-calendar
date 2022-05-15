@@ -7,17 +7,17 @@ void TimeInterval::ensureValidInterval()
 {
     if (this->startDate > this->endDate)
     {
-        std::cout << "The starting date needs to be before the end date!";
-        std::cout << "Swapping dates...";
+        std::cout << "The starting date needs to be before the end date!\n";
+        std::cout << "Dates swapped\n";
         Date startPlaceholder;
         startPlaceholder = this->startDate;
         this->startDate = this->endDate;
         this->endDate = startPlaceholder;
     }
-    if (this->startTime > this->endTime && this->startDate < this->endDate)
+    if (this->startTime > this->endTime && this->startDate == this->endDate)
     {
-        std::cout << "The starting time needs to be before the end time!";
-        std::cout << "Swapping start time with end time...";
+        std::cout << "The starting time needs to be before the end time!\n";
+        std::cout << "Start time swapped with end time\n";
         Time startPlaceholder;
         startPlaceholder = this->startTime;
         this->startTime = this->endTime;
