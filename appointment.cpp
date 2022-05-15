@@ -72,7 +72,15 @@ void Appointment::setEndTime(unsigned int _hours, unsigned int _minutes)
 
 std::istream& operator>>(std::istream& is, Appointment& appointment)
 {
-    return (is.getline(appointment.name, myStrlen(appointment.name), '\n') >> appointment.interval).ignore().getline(appointment.comment, myStrlen(appointment.comment), '\n');
+    std::cout << "Name: ";
+    is.getline(appointment.name, DEFAULT, '\n');
+    std::cout << "Interval: ";
+    is >> appointment.interval;
+    is.ignore();
+    std::cout << "Comment: ";
+    is.getline(appointment.comment, DEFAULT, '\n');
+    //return (is.getline(appointment.name, DEFAULT, '\n') >> appointment.interval).ignore().getline(appointment.comment, DEFAULT, '\n');
+    return is;
 }
 
 std::ostream& operator<<(std::ostream& os, const Appointment& appointment)
