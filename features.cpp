@@ -212,7 +212,7 @@ void search()
 
 void determineAction()
 {
-    char possibleActions[numberOfActions][9]{"Create", "Delete", "Schedule", "Change", "Search", "Busyness", "Free"};
+    char possibleActions[numberOfActions][9]{"Create", "Delete", "Schedule", "Change", "Search"};
     char action[9];
     std::cin.getline(action, 9, '\n');
     if (myStrcmp(action, possibleActions[0]))
