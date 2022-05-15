@@ -1,5 +1,13 @@
 #include "functions.hpp"
 
+void mySwap(Appointment appointments[], int index1, int index2)
+{
+    Appointment placeholder;
+    placeholder = appointments[index1];
+    appointments[index1] = appointments[index2];
+    appointments[index2] = placeholder;
+}
+
 bool subStringCheck(const char* substring, const char* string)
 {
     if (myStrlen(substring) > myStrlen(string))

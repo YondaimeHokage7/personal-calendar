@@ -4,6 +4,9 @@
 #include <sstream>
 #include "date.hpp"
 #include "timeInterval.hpp"
+#include "appointment.hpp"
+
+void mySwap(Appointment[], int index1, int index2);
 
 bool subStringCheck(const char* substring, const char* string);
 
