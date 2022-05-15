@@ -43,56 +43,6 @@ bool TimeInterval::isIn(const TimeInterval& interval1) const
     return (isInDate || (equalDates && isInTime));
 }
 
-void TimeInterval::setStartDay(unsigned _day)
-{
-    startDate.setDay(_day);
-}
-
-void TimeInterval::setStartMonth(unsigned _month)
-{
-    startDate.setMonth(_month);
-}
-
-void TimeInterval::setStartYear(int _year)
-{
-    startDate.setYear(_year);
-}
-
-void TimeInterval::setStartHours(unsigned _hours)
-{
-    startTime.setHours(_hours);
-}
-
-void TimeInterval::setStartMinutes(unsigned _minutes)
-{
-    startTime.setHours(_minutes);
-}
-
-void TimeInterval::setEndDay(unsigned _day)
-{
-    endDate.setDay(_day);
-}
-
-void TimeInterval::setEndMonth(unsigned int _month)
-{
-    endDate.setMonth(_month);
-}
-
-void TimeInterval::setEndYear(int _year)
-{
-    endDate.setYear(_year);
-}
-
-void TimeInterval::setEndHours(unsigned _hours)
-{
-    endTime.setHours(_hours);
-}
-
-void TimeInterval::setEndMinutes(unsigned _minutes)
-{
-    endTime.setMinutes(_minutes);
-}
-
 std::istream& operator>>(std::istream& is, TimeInterval& timeInterval)
 {
     is >> timeInterval.startDate >> timeInterval.startTime >> timeInterval.endDate >> timeInterval.endTime;

@@ -34,33 +34,6 @@ public:
     TimeInterval getInterval() const
     { return interval; }
 
-    //! Селекторр за час на начало
-    unsigned getStartTimeH() const
-    { return interval.getStartH(); }
-
-    //! Селектор за минути на начало
-    unsigned getStartTimeM() const
-    { return interval.getStartM(); }
-
-    //! Селектор за час на край
-    unsigned getEndTimeH() const
-    { return interval.getEndH(); }
-
-    unsigned getEndTimeM() const
-    { return interval.getEndM(); }
-
-    //! Селектор за ден
-    unsigned getStartDay() const
-    { return interval.getStartDay(); }
-
-    //! Селектор за месец
-    unsigned getStartMonth() const
-    { return interval.getStartMonth(); }
-
-    //! Селектор за година
-    int getStartYear() const
-    { return interval.getStartYear(); }
-
     const char* getName() const
     { return name; }
 
@@ -72,21 +45,6 @@ public:
 
     //! Мутатор за коментар
     void setComment(const char* _comment);
-
-    //! Мутатор за интервал
-    void setInterval(TimeInterval);
-
-    //! Мутатор за начална дата
-    void setStartDate(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
-
-    //! Мутатор за време на начало на срещата
-    void setStartTime(unsigned _hours = 0, unsigned _minutes = 0);
-
-    //! Мутатор за крайна дата
-    void setEndDate(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
-
-    //! Мутатор за време на край на срещата
-    void setEndTime(unsigned _hours = 0, unsigned _minutes = 0);
 
     //! Предефиниране на >>
     friend std::istream& operator>>(std::istream&, Appointment&);

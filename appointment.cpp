@@ -31,10 +31,6 @@ void Appointment::setComment(const char* _comment)
     comment[myStrlen(_comment) - 1] = '\0';
 }
 
-void Appointment::setInterval(TimeInterval _interval)
-{
-    interval = _interval;
-}
 
 void Appointment::setName(const char* _name)
 {
@@ -42,32 +38,6 @@ void Appointment::setName(const char* _name)
     name = new char[myStrlen(_name)];
     myStrcpy(_name, name);
     name[myStrlen(_name) - 1] = '\0';
-}
-
-void Appointment::setStartDate(unsigned int _day, unsigned int _month, int _year)
-{
-    interval.setStartDay(_day);
-    interval.setStartMonth(_month);
-    interval.setStartYear(_year);
-}
-
-void Appointment::setStartTime(unsigned int _hours, unsigned int _minutes)
-{
-    interval.setStartHours(_hours);
-    interval.setStartMinutes(_minutes);
-}
-
-void Appointment::setEndDate(unsigned int _day, unsigned int _month, int _year)
-{
-    interval.setEndDay(_day);
-    interval.setEndMonth(_month);
-    interval.setEndYear(_year);
-}
-
-void Appointment::setEndTime(unsigned int _hours, unsigned int _minutes)
-{
-    interval.setEndHours(_hours);
-    interval.setEndMinutes(_minutes);
 }
 
 std::istream& operator>>(std::istream& is, Appointment& appointment)
@@ -97,22 +67,3 @@ bool operator<(Appointment& app1, Appointment& app2)
     return (app1.getInterval() < app2.getInterval());
 }
 
-
-/*void Appointment::setStartTime(unsigned int _hours, unsigned int _minutes)
-{
-    startTime.setHours(_hours);
-    startTime.setMinutes(_minutes);
-}
-
-void Appointment::setEndTime(unsigned int _hours, unsigned int _minutes)
-{
-    endTime.setHours(_hours);
-    endTime.setMinutes(_minutes);
-}
-
-void Appointment::setDate(unsigned int _day, unsigned int _month, int _year)
-{
-    date.setDay(_day);
-    date.setMonth(_month);
-    date.setYear(_year);
-}*/ //неизползвани мутатори

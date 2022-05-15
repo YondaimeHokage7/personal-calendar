@@ -12,8 +12,6 @@ void printInstructions()
     std::cout << "\"Schedule\" to see a chronological schedule for a day\n";
     std::cout << "\"Change\" to change an event\n";
     std::cout << "\"Search\" to search for an event\n";
-    std::cout << "\"Busyness\" presents the most busy days\n";
-    std::cout << "\"Free\" searches for a free time in a given interval\n";
 }
 
 void create()
