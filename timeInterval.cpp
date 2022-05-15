@@ -43,37 +43,31 @@ bool TimeInterval::isIn(const TimeInterval& interval1) const
     return (isInDate || (equalDates && isInTime));
 }
 
-//! Мутатор за начален ден
 void TimeInterval::setStartDay(unsigned _day)
 {
     startDate.setDay(_day);
 }
 
-//! Мутатор за начален месец
 void TimeInterval::setStartMonth(unsigned _month)
 {
     startDate.setMonth(_month);
 }
 
-//!Мутатор за начална година
 void TimeInterval::setStartYear(int _year)
 {
     startDate.setYear(_year);
 }
 
-//! Мутатор за начален час
 void TimeInterval::setStartHours(unsigned _hours)
 {
     startTime.setHours(_hours);
 }
 
-//!Мутатор за начални минути
 void TimeInterval::setStartMinutes(unsigned _minutes)
 {
     startTime.setHours(_minutes);
 }
 
-//! Мутатор за краен ден
 void TimeInterval::setEndDay(unsigned _day)
 {
     endDate.setDay(_day);
@@ -89,13 +83,11 @@ void TimeInterval::setEndYear(int _year)
     endDate.setYear(_year);
 }
 
-//! Мутатор за краен час
 void TimeInterval::setEndHours(unsigned _hours)
 {
     endTime.setHours(_hours);
 }
 
-//!Мутатор за крайни минути
 void TimeInterval::setEndMinutes(unsigned _minutes)
 {
     endTime.setMinutes(_minutes);
@@ -111,8 +103,6 @@ std::istream& operator>>(std::istream& is, TimeInterval& timeInterval)
 std::ostream& operator<<(std::ostream& os, const TimeInterval& timeInterval)
 {
     return os << timeInterval.getStartDate() << ' ' << timeInterval.getStartTime() << ' ' << timeInterval.getEndDate() << ' ' << timeInterval.getEndTime();
-    /*return os << timeInterval.getStartYear() << '-' << timeInterval.getStartMonth() << '-' << timeInterval.getStartDay() << ' ' << timeInterval.getStartH() << ':' << timeInterval.getStartM()
-              << timeInterval.getEndYear() << '-' << timeInterval.getEndMonth() << '-' << timeInterval.getEndDay() << ' ' << timeInterval.getEndH() << ':' << timeInterval.getEndM();*/
 }
 
 bool operator>(const TimeInterval& interval1, const TimeInterval& interval2)
@@ -140,21 +130,3 @@ TimeInterval& TimeInterval::operator=(const char* string)
     ensureValidInterval();
     return *this;
 }
-
-/*void TimeInterval::setStartDate(const Date& date)
-{
-    this->startDate = date;
-}
-
-void TimeInterval::setStartTime(const Time& time)
-{
-    this->startTime = time
-}
-void TimeInterval::setEndDate(const Date& date)
-{
-    this->endDate = date;
-}
-void TimeInterval::setEndTime(const Time& time)
-{
-    this->endTime = time;
-}*/

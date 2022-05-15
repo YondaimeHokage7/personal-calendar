@@ -12,7 +12,7 @@ private:
     unsigned hours;
     //! Цяло число показващо минутите със стойности от 0 до 59
     unsigned minutes;
-    //! Подсигурява валдиност на час
+    //! Функция подсигуряваща валдиност на час
     void ensureValidTime();
 public:
     //! Конструктор с параметри
@@ -32,21 +32,28 @@ public:
     //! Мутатор за минути
     void setMinutes(unsigned _minutes);
 
+    //! Функция проверяваща дали даден час е между два други часа
     bool isIn(const Time&, const Time&) const;
 
+    //! Предефиниран оператор за въвеждане а Time
     friend std::istream& operator>>(std::istream&, Time&);
 };
-
+//! Предефиниран оператор за извеждане на Time
 std::ostream& operator<<(std::ostream&, const Time&);
 
+//! Предефиниран оператор за сравнение на Time с Time (строго)
 bool operator>(const Time&, const Time&);
 
+//! Предефиниран оператор за сравнение на Time с Time (нестрого)
 bool operator>=(const Time&, const Time&);
 
+//! Предефиниран оператор за сравнение на Time с Time (строго)
 bool operator<(const Time&, const Time&);
 
+//! Предефиниран оператор за сравнение на Time с Time (нестрого)
 bool operator<=(const Time&, const Time&);
 
+//! Предефиниран оператор за равенство на Time и Time
 bool operator==(const Time&, const Time&);
 
 #endif //PERSONAL_CALENDAR_TIME_HPP

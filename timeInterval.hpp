@@ -17,7 +17,6 @@ private:
     Time startTime;
     //! Крайно време
     Time endTime;
-
     //! Подсигурява валиден интервал
     void ensureValidInterval();
 
@@ -29,7 +28,7 @@ public:
     //! Конструктор с параметри
     TimeInterval(Date _startDate, Time _startTime, Date _endDate, Time _endTime);
 
-    //!
+    //! Функция определяща дали интервал от време се съдържа в друг
     bool isIn(const TimeInterval&) const;
 
     //! Селектор за начална дата
@@ -88,14 +87,6 @@ public:
     int getEndYear() const
     { return endDate.getYear(); }
 
-    void setStartDate(const Date&);
-
-    void setStartTime(const Time&);
-
-    void setEndDate(const Date&);
-
-    void setEndTime(const Time&);
-
     //! Мутатор за начален ден
     void setStartDay(unsigned _day);
 
@@ -126,17 +117,22 @@ public:
     //!Мутатор за крайни минути
     void setEndMinutes(unsigned _minutes);
 
+    //!Предефиниран оператор за въвеждане
     friend std::istream& operator>>(std::istream&, TimeInterval&);
 
-    friend std::ostream& operator<<(std::ostream&, const TimeInterval&);
-
+    //! Предефиниран оператор за присвояване
     TimeInterval& operator=(const char*);
 };
+//! Предефиниран оператор за извеждане
+std::ostream& operator<<(std::ostream&, const TimeInterval&);
 
+//! Предефиниран оператор за сравнение на два интервала(строго)
 bool operator>(const TimeInterval&, const TimeInterval&);
 
+//! предефиниран оператор за равнество на два интервала
 bool operator==(const TimeInterval&,const TimeInterval&);
 
+//! Предефиниран оператор за сравнение на два интервала(строго)
 bool operator<(const TimeInterval&, const TimeInterval&);
 
 #endif //PERSONAL_CALENDAR_TIMEINTERVAL_HPP

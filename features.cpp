@@ -46,8 +46,7 @@ void deleteEvent()
         {
             f >> read;
             bool notEmpty{read.getName()[0] != 0};
-            if (notEmpty &&
-                !(myStrcmp(appointment.getName(), read.getName()) && compareIntervals(appointment.getInterval(), read.getInterval()) && myStrcmp(appointment.getComment(), read.getComment())))
+            if (notEmpty && !(myStrcmp(appointment.getName(), read.getName()) && compareIntervals(appointment.getInterval(), read.getInterval()) && myStrcmp(appointment.getComment(), read.getComment())))
             {
                 saved << read.getName() << '\n' << read.getInterval() << '\n' << read.getComment() << '\n';
             }
@@ -236,8 +235,5 @@ void determineAction()
     {
         search();
     }
-    /*else if(myStrcmp(action,possibleActions[5]))
-    else if(myStrcmp(action,possibleActions[6]))
-    */
 }
 
