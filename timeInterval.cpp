@@ -104,7 +104,6 @@ void TimeInterval::setEndMinutes(unsigned _minutes)
 std::istream& operator>>(std::istream& is, TimeInterval& timeInterval)
 {
     is >> timeInterval.startDate >> timeInterval.startTime >> timeInterval.endDate >> timeInterval.endTime;
-    is.ignore();
     timeInterval.ensureValidInterval();
     return is;
 }
