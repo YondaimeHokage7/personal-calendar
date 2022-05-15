@@ -173,34 +173,28 @@ void change()
     //std::ofstream newAppointments("appointments.txt", std::ios::trunc); //Нов файл с направените промени
     std::cout << changedAppointments.str();
     //не прави revert-ването на промените ако съвпадат????
-} //ne moga
+}
 
 void search()
 {
+    std::cout << "String: ";
     char* search{new char[DEFAULT]{}};
     std::cin.getline(search, DEFAULT, '\n');
-    char* name{new char[DEFAULT]{}};
-    char* interval{new char[34]};
-    char* comment{new char[DEFAULT]};
     std::stringstream print;
     std::ifstream appointments{"appointments.txt", std::ios::in};
+    Appointment fileApp;
     while (appointments.good())
     {
-        appointments.getline(name, DEFAULT, '\n');
-        appointments.getline(interval, DEFAULT, '\n');
-        appointments.getline(comment, DEFAULT, '\n');
-        if (subStringCheck(search, name) || subStringCheck(search, comment))
+        appointments >> fileApp;
+        if (subStringCheck(search, fileApp.getName()) || subStringCheck(search, fileApp.getComment()))
         {
-            if (!(name[0] == 0 && interval[0] == 0 && comment[0] == 0))
+            if (!(myStrcmp(fileApp.getName(), fileApp.getComment())))
             {
-                print << name << '\n' << interval << '\n' << comment << '\n';
+                print << fileApp.getName() << '\n' << fileApp.getInterval() << '\n' << fileApp.getComment() << '\n';
             }
         }
     }
     delete[] search;
-    delete[] name;
-    delete[] interval;
-    delete[] comment;
     std::cout << print.str();
 }
 
