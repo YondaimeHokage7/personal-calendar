@@ -69,7 +69,6 @@ void schedule()
     std::cin >> date;
     std::ifstream fi("appointments.txt", std::ios::in);
     std::stringstream toBePrinted;
-    int counter{0};
     while (fi.good())
     {
         Appointment appointment;
@@ -79,16 +78,11 @@ void schedule()
             if (!(myStrcmp(appointment.getName(), appointment.getComment())))
             {
                 toBePrinted << appointment.getName() << '\n' << appointment.getInterval() << '\n' << appointment.getComment() << '\n';
-                counter++;
             }
         }
     }
     fi.close();
-    Appointment appointments[counter];
-    fillArray(appointments,counter,toBePrinted);
-    sort(appointments, counter);
-    printArray(appointments, counter);
-
+    std::cout << toBePrinted.str();
 } // NE PIPAI!!!!!!
 
 void change()
