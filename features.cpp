@@ -28,19 +28,19 @@ void create()
     }
     else
     {
-        std::cerr << "Error!";
+        std::cerr << "Error! File not found!";
     }
 }
 
 void deleteEvent()
 {
-    std::cout << "Appointment: \n";
-    Appointment appointment;
-    std::cin >> appointment;
-    Appointment read;
     std::ifstream f("appointments.txt", std::ios::in);
     if (f.is_open())
     {
+        std::cout << "Appointment: \n";
+        Appointment appointment;
+        std::cin >> appointment;
+        Appointment read;
         std::stringstream saved;
         while (f.good())
         {
@@ -57,20 +57,20 @@ void deleteEvent()
     }
     else
     {
-        std::cerr << "Error!";
+        std::cerr << "Error! File not found!";
     }
 }
 
 void schedule()
 {
-    std::cout << "Date: \n";
-    Date date;
-    std::cin >> date;
     std::ifstream fi("appointments.txt", std::ios::in);
-    std::stringstream toBePrinted;
     if (fi.is_open())
     {
-        while (fi.is_open())
+        std::cout << "Date: \n";
+        Date date;
+        std::cin >> date;
+        std::stringstream toBePrinted;
+        while (fi.good())
         {
             Appointment appointment;
             fi >> appointment;
@@ -87,7 +87,7 @@ void schedule()
     }
     else
     {
-        std::cerr << "Error!";
+        std::cerr << "Error! File not found!";
     }
 }
 
@@ -197,7 +197,7 @@ void change()
     }
     else
     {
-        std::cerr << "Error";
+        std::cerr << "Error! File not found!";
     }
 }
 
@@ -227,7 +227,7 @@ void search()
     }
     else
     {
-        std::cerr << "Error!";
+        std::cerr << "Error! File not found!";
     }
 }
 
