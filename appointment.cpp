@@ -27,7 +27,7 @@ void Appointment::setComment(const char* _comment)
 {
     delete[] comment;
     comment = new char[myStrlen(_comment)];
-    strcpy(_comment, comment);
+    myStrcpy(_comment, comment);
     comment[myStrlen(_comment) - 1] = '\0';
 }
 
@@ -40,7 +40,7 @@ void Appointment::setName(const char* _name)
 {
     delete[] name;
     name = new char[myStrlen(_name)];
-    strcpy(_name, name);
+    myStrcpy(_name, name);
     name[myStrlen(_name) - 1] = '\0';
 }
 
@@ -72,16 +72,19 @@ void Appointment::setEndTime(unsigned int _hours, unsigned int _minutes)
 
 std::istream& operator>>(std::istream& is, Appointment& appointment)
 {
-    is.getline(appointment.name, DEFAULT, '\n');
-    is >> appointment.interval;
-    is.ignore();
-    is.getline(appointment.comment, DEFAULT, '\n');
-    return is;
+    if (&is == &std::cin)
+    {
+        return (is.getline(appointment.name, DEFAULT, '\n') >> appointment.interval).ignore(2).getline(appointment.comment, DEFAULT, '\n');
+    }
+    else
+    {
+        return (is.getline(appointment.name, DEFAULT, '\n') >> appointment.interval).ignore(1).getline(appointment.comment, DEFAULT, '\n');
+    }
 }
 
 std::ostream& operator<<(std::ostream& os, const Appointment& appointment)
 {
-    return os << appointment.getName() << "\n" << appointment.getInterval() << "\n" << appointment.getComment() << "\n";
+    return os << appointment.getName() << '\n' << appointment.getInterval() << '\n' << appointment.getComment() << '\n';
 }
 
 /*void Appointment::setStartTime(unsigned int _hours, unsigned int _minutes)
