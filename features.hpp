@@ -4,6 +4,7 @@
 
 //! Брой възможни операции
 const int numberOfActions{5};
+
 //! Големина на низ по подразбиране
 const size_t DEFAULT{1000};
 

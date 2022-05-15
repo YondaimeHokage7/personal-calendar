@@ -11,7 +11,7 @@ void Time::ensureValidTime()
     while (minutes > 59)
     {
         std::cout << "Invalid value for minutes!\n";
-        std::cout << "Setting default value for minutes";
+        std::cout << "Setting default value for minutes\n";
         minutes = 0;
     }
 }
