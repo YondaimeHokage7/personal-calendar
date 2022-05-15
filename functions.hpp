@@ -11,9 +11,9 @@ bool compareIntervals(TimeInterval, TimeInterval);
 
 int myStrlen(const char* string);
 
-void strcpy(const char* source, char* destination);
+void myStrcpy(const char* source, char* destination);
 
-bool strcmp(const char* string1, const char* string2);
+bool myStrcmp(const char* string1, const char* string2);
 
 
 #endif //PERSONAL_CALENDAR_FUNCTIONS_HPP

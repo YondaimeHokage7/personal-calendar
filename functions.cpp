@@ -50,7 +50,7 @@ int myStrlen(const char* string)
     return counter + 1;
 }
 
-void strcpy(const char* source, char* destination)
+void myStrcpy(const char* source, char* destination)
 {
     for (int i{0}; source[i] != '\0'; i++)
     {
@@ -58,7 +58,7 @@ void strcpy(const char* source, char* destination)
     }
 }
 
-bool strcmp(const char* string1, const char* string2)
+bool myStrcmp(const char* string1, const char* string2)
 {
     bool result{true};
     if (myStrlen(string1) != myStrlen(string2))
