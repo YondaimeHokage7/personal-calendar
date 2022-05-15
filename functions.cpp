@@ -1,45 +1,5 @@
 #include "functions.hpp"
 
-void mySwap(Appointment appointments[], int index1, int index2)
-{
-    Appointment placeholder;
-    placeholder = appointments[index1];
-    appointments[index1] = appointments[index2];
-    appointments[index2] = placeholder;
-}
-
-void sort(Appointment appointments[], int size)
-{
-    for (int i{0}; i < size; i++)
-    {
-        int currentMin{i};
-        for (int j{i + 1}; j < size - 1; j++)
-        {
-            if (appointments[i] > appointments[j])
-            {
-                currentMin = j;
-            }
-            mySwap(appointments, i, j);
-        }
-    }
-}
-
-void fillArray(Appointment appointments[], int size, std::stringstream& ss)
-{
-    for (int i{0}; i < size; i++)
-    {
-        ss >> appointments[i];
-    }
-}
-
-void printArray(Appointment appointments[], int size)
-{
-    for (int i{0}; i < size; i++)
-    {
-        std::cout << appointments[i];
-    }
-}
-
 bool subStringCheck(const char* substring, const char* string)
 {
     if (myStrlen(substring) > myStrlen(string))
