@@ -30,7 +30,7 @@ void create()
     {
         std::cout << "Error!";
     }
-}
+} //NE PIPAI!!!
 
 void deleteEvent()
 {
@@ -46,7 +46,8 @@ void deleteEvent()
         {
             f >> read;
             bool notEmpty{read.getName()[0] != 0};
-            if (notEmpty && !(myStrcmp(appointment.getName(), read.getName()) && compareIntervals(appointment.getInterval(), read.getInterval()) && myStrcmp(appointment.getComment(), read.getComment())))
+            if (notEmpty &&
+                !(myStrcmp(appointment.getName(), read.getName()) && compareIntervals(appointment.getInterval(), read.getInterval()) && myStrcmp(appointment.getComment(), read.getComment())))
             {
                 saved << read.getName() << '\n' << read.getInterval() << '\n' << read.getComment() << '\n';
             }
@@ -59,90 +60,65 @@ void deleteEvent()
     {
         std::cerr << "Error!";
     }
-}
+} //NE PIPAI!!!
 
 void schedule()
 {
-    //Може когато се създават още да са сортирани
-    std::stringstream toBePrinted;
-    std::cout << "Enter a date: ";
+    std::cout << "Date: \n";
     Date date;
     std::cin >> date;
     std::ifstream fi("appointments.txt", std::ios::in);
-    TimeInterval interval;
-    std::stringstream intervals;
-    std::stringstream trash;
-    char* name{new char[DEFAULT]};
-    char* intervalStr{new char[34]};
-    char* comment{new char[DEFAULT]};
+    std::stringstream toBePrinted;
     while (fi.good())
     {
-        fi.getline(name, DEFAULT, '\n');
-        fi.getline(intervalStr, 34, '\n');
-        intervals << intervalStr;
-        intervals >> interval;
-        fi.getline(comment, DEFAULT, '\n');
-        if (date.isInAnInterval(interval.getStartDate(), interval.getEndDate()))
+        Appointment appointment;
+        fi >> appointment;
+        if (date.isInAnInterval(appointment.getInterval().getStartDate(), appointment.getInterval().getEndDate()))
         {
-            if (!(myStrcmp(name, intervalStr) && myStrcmp(intervalStr, comment)))
+            if (!(myStrcmp(appointment.getName(), appointment.getComment())))
             {
-                toBePrinted << name << '\n' << intervalStr << '\n' << comment << '\n';
+                toBePrinted << appointment.getName() << '\n' << appointment.getInterval() << '\n' << appointment.getComment() << '\n';
             }
         }
     }
     fi.close();
-    delete[] name;
-    delete[] intervalStr;
-    delete[] comment;
     std::cout << toBePrinted.str();
-}
+} // NE PIPAI!!!!!! //samo trqbva da sa v hronologichen red
 
 void change()
 {
-    char* name{new char[DEFAULT]{}};
-    char* intervalString{new char[34]{}};
-    char* comment{new char[DEFAULT]{}};
-    std::stringstream changed;
-    std::stringstream allIntervals;
-    TimeInterval interval;
-    TimeInterval originalInterval;
-    std::cout << "Eevent name: ";
-    std::cin.getline(name, DEFAULT, '\n');
-    std::cout << "Enter time interval: ";
-    std::cin.getline(intervalString, 34, '\n');
-    interval = intervalString;
-    originalInterval = interval;
+    std::cout << "Appointment: \n";
+    Appointment userInput;
+    std::cin >> userInput;
     std::ifstream appointments("appointments.txt", std::ios::in);
-    char* nameRead{new char[DEFAULT]{}};
-    char* intervalRead{new char[34]{}};
-    char* commentRead{new char[DEFAULT]{}};
-    while (appointments.good())
+    Appointment changed;
+    Appointment fileInput;
+    std::stringstream changedAppointments;
+    while (appointments.good() && appointments.is_open())
     {
-        bool executed{false};
-        appointments.getline(nameRead, DEFAULT, '\n');
-        appointments.getline(intervalRead, 34, '\n');
-        allIntervals << intervalRead << '\n';
-        appointments.getline(commentRead, DEFAULT, '\n');
-        if (myStrcmp(name, nameRead) && myStrcmp(intervalString, intervalRead))
+        appointments >> fileInput;
+        changed = fileInput;
+        if (myStrcmp(userInput.getName(), fileInput.getName()) && (userInput.getInterval() == fileInput.getInterval()) && myStrcmp(userInput.getComment(), fileInput.getComment()))
         {
-            char answer[4];
+            char answer[4]{};
             std::cout << "Would you like to change the name of the event?\n";
             std::cin.getline(answer, 4, '\n');
             if (myStrcmp(answer, "yes"))
             {
+                char* name{new char[DEFAULT]{}};
                 std::cout << "Enter a new name: ";
                 std::cin.getline(name, DEFAULT, '\n');
+                changed.setName(name);
+                delete[] name;
             }
             std::cout << "Would you like to change the time interval of the event?\n";
             std::cin.getline(answer, 4, '\n');
-            TimeInterval current;
-            current = intervalRead;
             if (myStrcmp(answer, "yes"))
             {
-                Date newStartDate = current.getStartDate();
-                Time newStartTime = current.getStartTime();
-                Date newEndDate = current.getEndDate();
-                Time newEndTime = current.getEndTime();
+                Date newStartDate = changed.getInterval().getStartDate();
+                Time newStartTime = changed.getInterval().getStartTime();
+                Date newEndDate = changed.getInterval().getEndDate();
+                Time newEndTime = changed.getInterval().getEndTime();
                 std::cout << "Would you like to change the start date?\n";
                 std::cin.getline(answer, 4, '\n');
                 if (myStrcmp(answer, "yes"))
@@ -175,48 +151,29 @@ void change()
                     std::cin >> newEndTime;
                     std::cin.ignore();
                 }
-                interval = TimeInterval(newStartDate, newStartTime, newEndDate, newEndTime);
+                changed.setInterval(TimeInterval(newStartDate, newStartTime, newEndDate, newEndTime));
             }
             std::cout << "Would you like to change the comment of the event?\n";
             std::cin.getline(answer, 4, '\n');
-            myStrcpy(commentRead, comment);
             if (myStrcmp(answer, "yes"))
             {
+                char* comment{new char[DEFAULT]{}};
                 std::cout << "Enter a new comment: ";
                 std::cin.getline(comment, DEFAULT, '\n');
+                changed.setComment(comment);
+                delete[] comment;
             }
-            changed << name << '\n' << interval << '\n' << comment << '\n';
-            executed = true;
         }
-        if ((!executed) && !(myStrcmp(nameRead, intervalRead) && myStrcmp(intervalRead, commentRead)))
+        if (!(myStrcmp(fileInput.getName(), fileInput.getComment())))
         {
-            changed << nameRead << '\n' << intervalRead << '\n' << commentRead << '\n'; //dali ne moje da se smesi s gornoto na red 221?
+            changedAppointments << changed << '\n';
         }
     }
-    delete[] nameRead;
-    delete[] commentRead;
-    delete[] name;
-    delete[] comment;
     appointments.close();
-    std::fstream intervals("intervals.txt", std::ios::out); //Файл с всички интервали
-    intervals << allIntervals.str();
-    while (intervals.good())
-    {
-        intervals.getline(intervalRead, 34, '\n');
-        TimeInterval currentLine;
-        currentLine = intervalRead;
-        if (currentLine.isIn(interval))
-        {
-            std::cout << "The given interval is not free!";
-            std::cout << "Reverting changes made to the interval...";
-            interval = originalInterval;
-        }
-    }
-    remove("intervals.txt");
-    std::ofstream newAppointments("appointments.txt", std::ios::trunc); //Нов файл с направените промени
-    newAppointments << changed.str();
+    //std::ofstream newAppointments("appointments.txt", std::ios::trunc); //Нов файл с направените промени
+    std::cout << changedAppointments.str();
     //не прави revert-ването на промените ако съвпадат????
-}
+} //ne moga
 
 void search()
 {
