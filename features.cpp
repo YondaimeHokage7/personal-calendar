@@ -18,7 +18,7 @@ void printInstructions()
 
 void create()
 {
-    char* placeHolder{new char[DEFAULT]};
+    /*char* placeHolder{new char[DEFAULT]};
     Appointment appointment;
     std::cout << "Event name: ";
     std::cin.getline(placeHolder, DEFAULT, '\n');
@@ -35,7 +35,9 @@ void create()
     appointment.setStartDate(interval.getStartDate().getDay(), interval.getStartDate().getMonth(), interval.getStartDate().getYear());
     appointment.setStartTime(interval.getStartTime().getHours(), interval.getStartTime().getMinutes());
     appointment.setEndDate(interval.getEndDate().getDay(), interval.getEndDate().getMonth(), interval.getEndDate().getYear());
-    appointment.setEndTime(interval.getEndTime().getHours(), interval.getEndTime().getMinutes());
+    appointment.setEndTime(interval.getEndTime().getHours(), interval.getEndTime().getMinutes());*/
+    Appointment appointment;
+    std::cin >> appointment;
     std::ofstream fo("appointments.txt", std::ios::app);
     if (fo.is_open())
     {
@@ -49,7 +51,7 @@ void create()
 
 void deleteEvent()
 {
-    std::cout << "Eevent name: ";
+    /*std::cout << "Eevent name: ";
     char* name{new char[DEFAULT]};
     std::cin.getline(name, DEFAULT, '\n');
     std::cout << "Enter time interval: ";
@@ -57,36 +59,38 @@ void deleteEvent()
     TimeInterval interval;
     std::cin >> interval;
     interval = intervalString;
-    std::fstream f("appointments.txt", std::ios::out | std::ios::in);
+     */
+    Appointment appointment;
+    std::cin >> appointment;
+    Appointment read;
+    std::fstream f("appointments.txt", std::ios::out | std::ios::in); // eventualno mahane na std::ios::in
     if (f.is_open())
     {
         std::stringstream saved;
         std::stringstream deleted;
-        char* nameRead{new char[DEFAULT]};
+        /*char* nameRead{new char[DEFAULT]};
         char* intervalRead{new char[34]};
-        char* commentRead{new char[DEFAULT]};
+        char* commentRead{new char[DEFAULT]};*/
         while (f.good())
         {
-            f.getline(nameRead, DEFAULT, '\n');
+            f >> read;
+            /*f.getline(nameRead, DEFAULT, '\n');
             f.getline(intervalRead, 34, '\n');
-            f.getline(commentRead, DEFAULT, '\n');
-            if (strcmp(nameRead, name) && strcmp(intervalRead, intervalString))
+            f.getline(commentRead, DEFAULT, '\n');*/
+            bool notEmpty{!(read.getName()[0] == 0 && read.getComment()[0] == 0)};
+            if (notEmpty && !(strcmp(appointment.getName(), read.getName()) && compareIntervals(appointment.getInterval(),read.getInterval()) && strcmp(appointment.getComment(),read.getComment())))
             {
-                deleted << nameRead << intervalRead << commentRead;
+                //deleted << nameRead << intervalRead << commentRead;
+                saved << read.getName() << '\n' << read.getInterval() << '\n' << read.getComment() << '\n';
             }
-            else
+            /*else
             {
                 if (!(nameRead[0] == 0 && intervalRead[0] == 0 && commentRead[0] == 0))
                 {
                     saved << nameRead << '\n' << intervalRead << '\n' << commentRead << '\n';
                 }
-            }
+            }*/
         }
-        delete[] name;
-        delete[] intervalString;
-        delete[] nameRead;
-        delete[] intervalRead;
-        delete[] commentRead;
         std::ofstream ofs("appointments.txt", std::ios::trunc);
         ofs << saved.str();
     }
