@@ -34,6 +34,12 @@ bool subStringCheck(const char* substring, const char* string)
     return false;
 }
 
+bool compareIntervals(TimeInterval interval1, TimeInterval interval2)
+{
+    return interval1.getStartDate() == interval2.getStartDate() && interval1.getStartTime() == interval2.getStartTime() &&
+           interval1.getEndDate() == interval2.getEndDate() && interval1.getEndTime() == interval2.getEndTime();
+}
+
 int myStrlen(const char* string)
 {
     int counter{0};

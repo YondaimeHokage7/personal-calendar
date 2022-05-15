@@ -3,8 +3,11 @@
 
 #include <sstream>
 #include "date.hpp"
+#include "timeInterval.hpp"
 
 bool subStringCheck(const char* substring, const char* string);
+
+bool compareIntervals(TimeInterval, TimeInterval);
 
 int myStrlen(const char* string);
 
