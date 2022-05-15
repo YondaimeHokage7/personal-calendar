@@ -135,6 +135,8 @@ public:
 
 bool operator>(const TimeInterval&, const TimeInterval&);
 
+bool operator==(const TimeInterval&,const TimeInterval&);
+
 bool operator<(const TimeInterval&, const TimeInterval&);
 
 #endif //PERSONAL_CALENDAR_TIMEINTERVAL_HPP
