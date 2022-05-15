@@ -81,7 +81,7 @@ std::istream& operator>>(std::istream& is, Appointment& appointment)
 
 std::ostream& operator<<(std::ostream& os, const Appointment& appointment)
 {
-    return os << appointment.getName() << "\n" << appointment.interval << "\n" << appointment.getComment() << "\n";
+    return os << appointment.getName() << "\n" << appointment.getInterval() << "\n" << appointment.getComment() << "\n";
 }
 
 /*void Appointment::setStartTime(unsigned int _hours, unsigned int _minutes)

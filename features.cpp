@@ -21,10 +21,10 @@ void create()
     std::cout << "Appointment: \n";
     Appointment appointment;
     std::cin >> appointment;
-    std::ofstream fo("appointments.txt", std::ios::app);
-    if (fo.is_open())
+    std::fstream f("appointments.txt", std::ios::app);
+    if (f.is_open())
     {
-        fo << appointment;
+        f << appointment;
     }
     else
     {
