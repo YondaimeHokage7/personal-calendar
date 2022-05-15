@@ -16,12 +16,6 @@ private:
     char* comment;
     //! Интервал от време
     TimeInterval interval;
-    /*//! Дата на срерщата
-    Date date;
-    //! Начало на срещата
-    Time startTime;
-    //! Край на срещата
-    Time endTime;*/ // неизползвани член-данни
 
 public:
 
@@ -79,6 +73,9 @@ public:
     //! Мутатор за коментар
     void setComment(const char* _comment);
 
+    //! Мутатор за интервал
+    void setInterval(TimeInterval);
+
     //! Мутатор за начална дата
     void setStartDate(unsigned _day = 1, unsigned _month = 1, int _year = 2022);
 
@@ -97,8 +94,5 @@ public:
     //! Предефиниране на <<
     friend std::ostream& operator<<(std::ostream&, const Appointment&);
 };
-
-/*
-*/ //неизползвани мутатори
 
 #endif //PERSONAL_CALENDAR_APPOINTMENT_HPP

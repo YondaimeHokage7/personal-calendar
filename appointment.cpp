@@ -31,6 +31,11 @@ void Appointment::setComment(const char* _comment)
     comment[myStrlen(_comment) - 1] = '\0';
 }
 
+void Appointment::setInterval(TimeInterval _interval)
+{
+    interval = _interval;
+}
+
 void Appointment::setName(const char* _name)
 {
     delete[] name;
