@@ -8,6 +8,12 @@
 
 void mySwap(Appointment[], int index1, int index2);
 
+void sort(Appointment[], int size);
+
+void fillArray(Appointment[], int size, std::stringstream&);
+
+void printArray(Appointment[], int size);
+
 bool subStringCheck(const char* substring, const char* string);
 
 bool compareIntervals(TimeInterval, TimeInterval);
