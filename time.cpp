@@ -87,3 +87,8 @@ bool operator<=(const Time& time1, const Time& time2)
     return (time1.getHours() <= time2.getHours()) ||
            (time1.getHours() == time2.getHours()) && (time1.getMinutes() <= time2.getMinutes());
 }
+
+bool operator==(const Time& time1, const Time& time2)
+{
+    return time1.getHours() == time2.getHours() && time1.getMinutes() == time2.getMinutes();
+}

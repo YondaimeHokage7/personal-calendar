@@ -47,4 +47,6 @@ bool operator<(const Time&, const Time&);
 
 bool operator<=(const Time&, const Time&);
 
+bool operator==(const Time&, const Time&);
+
 #endif //PERSONAL_CALENDAR_TIME_HPP
