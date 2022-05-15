@@ -21,7 +21,7 @@ void create()
     std::cout << "Appointment: \n";
     Appointment appointment;
     std::cin >> appointment;
-    std::fstream f("appointments.txt", std::ios::app);
+    std::ofstream f("appointments.txt", std::ios::app);
     if (f.is_open())
     {
         f << appointment;
@@ -46,7 +46,7 @@ void deleteEvent()
         {
             f >> read;
             bool notEmpty{read.getName()[0] != 0};
-            if (notEmpty && !(strcmp(appointment.getName(), read.getName()) && compareIntervals(appointment.getInterval(), read.getInterval()) && strcmp(appointment.getComment(), read.getComment())))
+            if (notEmpty && !(myStrcmp(appointment.getName(), read.getName()) && compareIntervals(appointment.getInterval(), read.getInterval()) && myStrcmp(appointment.getComment(), read.getComment())))
             {
                 saved << read.getName() << '\n' << read.getInterval() << '\n' << read.getComment() << '\n';
             }
@@ -84,7 +84,7 @@ void schedule()
         fi.getline(comment, DEFAULT, '\n');
         if (date.isInAnInterval(interval.getStartDate(), interval.getEndDate()))
         {
-            if (!(strcmp(name, intervalStr) && strcmp(intervalStr, comment)))
+            if (!(myStrcmp(name, intervalStr) && myStrcmp(intervalStr, comment)))
             {
                 toBePrinted << name << '\n' << intervalStr << '\n' << comment << '\n';
             }
@@ -123,12 +123,12 @@ void change()
         appointments.getline(intervalRead, 34, '\n');
         allIntervals << intervalRead << '\n';
         appointments.getline(commentRead, DEFAULT, '\n');
-        if (strcmp(name, nameRead) && strcmp(intervalString, intervalRead))
+        if (myStrcmp(name, nameRead) && myStrcmp(intervalString, intervalRead))
         {
             char answer[4];
             std::cout << "Would you like to change the name of the event?\n";
             std::cin.getline(answer, 4, '\n');
-            if (strcmp(answer, "yes"))
+            if (myStrcmp(answer, "yes"))
             {
                 std::cout << "Enter a new name: ";
                 std::cin.getline(name, DEFAULT, '\n');
@@ -137,7 +137,7 @@ void change()
             std::cin.getline(answer, 4, '\n');
             TimeInterval current;
             current = intervalRead;
-            if (strcmp(answer, "yes"))
+            if (myStrcmp(answer, "yes"))
             {
                 Date newStartDate = current.getStartDate();
                 Time newStartTime = current.getStartTime();
@@ -145,7 +145,7 @@ void change()
                 Time newEndTime = current.getEndTime();
                 std::cout << "Would you like to change the start date?\n";
                 std::cin.getline(answer, 4, '\n');
-                if (strcmp(answer, "yes"))
+                if (myStrcmp(answer, "yes"))
                 {
                     std::cout << "Enter a new start date: ";
                     std::cin >> newStartDate;
@@ -153,7 +153,7 @@ void change()
                 }
                 std::cout << "Would you like to change the start time?\n";
                 std::cin.getline(answer, 4, '\n');
-                if (strcmp(answer, "yes"))
+                if (myStrcmp(answer, "yes"))
                 {
                     std::cout << "Enter a new start time: ";
                     std::cin >> newStartTime;
@@ -161,7 +161,7 @@ void change()
                 }
                 std::cout << "Would you like to change the end date?\n";
                 std::cin.getline(answer, 4, '\n');
-                if (strcmp(answer, "yes"))
+                if (myStrcmp(answer, "yes"))
                 {
                     std::cout << "Enter a new end date: ";
                     std::cin >> newEndDate;
@@ -169,7 +169,7 @@ void change()
                 }
                 std::cout << "Would you like to change the end time?\n";
                 std::cin.getline(answer, 4, '\n');
-                if (strcmp(answer, "yes"))
+                if (myStrcmp(answer, "yes"))
                 {
                     std::cout << "Enter a new end time: \n";
                     std::cin >> newEndTime;
@@ -179,8 +179,8 @@ void change()
             }
             std::cout << "Would you like to change the comment of the event?\n";
             std::cin.getline(answer, 4, '\n');
-            strcpy(commentRead, comment);
-            if (strcmp(answer, "yes"))
+            myStrcpy(commentRead, comment);
+            if (myStrcmp(answer, "yes"))
             {
                 std::cout << "Enter a new comment: ";
                 std::cin.getline(comment, DEFAULT, '\n');
@@ -188,7 +188,7 @@ void change()
             changed << name << '\n' << interval << '\n' << comment << '\n';
             executed = true;
         }
-        if ((!executed) && !(strcmp(nameRead, intervalRead) && strcmp(intervalRead, commentRead)))
+        if ((!executed) && !(myStrcmp(nameRead, intervalRead) && myStrcmp(intervalRead, commentRead)))
         {
             changed << nameRead << '\n' << intervalRead << '\n' << commentRead << '\n'; //dali ne moje da se smesi s gornoto na red 221?
         }
@@ -252,28 +252,28 @@ void determineAction()
     char possibleActions[numberOfActions][9]{"Create", "Delete", "Schedule", "Change", "Search", "Busyness", "Free"};
     char action[9];
     std::cin.getline(action, 9, '\n');
-    if (strcmp(action, possibleActions[0]))
+    if (myStrcmp(action, possibleActions[0]))
     {
         create();
     }
-    else if (strcmp(action, possibleActions[1]))
+    else if (myStrcmp(action, possibleActions[1]))
     {
         deleteEvent();
     }
-    else if (strcmp(action, possibleActions[2]))
+    else if (myStrcmp(action, possibleActions[2]))
     {
         schedule();
     }
-    else if (strcmp(action, possibleActions[3]))
+    else if (myStrcmp(action, possibleActions[3]))
     {
         change();
     }
-    else if (strcmp(action, possibleActions[4]))
+    else if (myStrcmp(action, possibleActions[4]))
     {
         search();
     }
-    /*else if(strcmp(action,possibleActions[5]))
-    else if(strcmp(action,possibleActions[6]))
+    /*else if(myStrcmp(action,possibleActions[5]))
+    else if(myStrcmp(action,possibleActions[6]))
     */
 }
 
